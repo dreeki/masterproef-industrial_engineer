@@ -1,0 +1,19 @@
+<https://example.org/profile/dreeki/#me> 
+    <http://xmlns.com/foaf/0.1/givenName> "Andreas"@nl .
+
+<https://example.org/profile/dreeki/#me> 
+    <http://xmlns.com/foaf/0.1/givenName> "Andreas"@en .
+
+<https://example.org/profile/dreeki/#me> 
+    <http://dbpedia.org/ontology/birthDate> 
+        "1994-08-27"^^<http://www.w3.org/2001/XMLSchema#date> .
+
+<https://example.org/profile/dreeki/#me>
+    <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 
+        <http://xmlns.com/foaf/0.1/Person> .
+
+<https://example.org/profile/dreeki/#me> 
+    <http://xmlns.com/foaf/0.1/familyName> "De Witte"@nl .
+
+<https://example.org/profile/dreeki/#me> 
+    <http://xmlns.com/foaf/0.1/familyName> "De Witte"@en .

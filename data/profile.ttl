@@ -1,0 +1,28 @@
+@prefix : <https://example.org/profile/dreeki/#>.
+@prefix p: <https://data.example.org/people/>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix dbp: <http://dbpedia.org/resource/>.
+@prefix dbo: <http://dbpedia.org/ontology/>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+<https://example.org/profile/dreeki/> a foaf:Document, 
+		foaf:PersonalProfileDocument;
+    rdfs:label "Andreas De Witte's FOAF profile"@en;
+    foaf:maker :me;
+    foaf:primaryTopic :me.
+
+:me a foaf:Person;
+    foaf:name  "Andreas De Witte"@en, "Andreas De Witte"@nl;
+    rdfs:label "Andreas De Witte"@en, "Andreas De Witte"@nl;
+	foaf:nick "dreeki"@en, "dreeki"@nl;
+    foaf:givenName "Andreas"@en, "Andreas"@nl;
+    foaf:familyName "De Witte"@en, "De Witte"@nl;
+    dbo:birthPlace dbp:Aalst;
+    dbo:birthDate "1994-08-27"^^xsd:date.
+
+p:demian_dekoninck a foaf:Person;
+    foaf:givenName "Demian"@en;
+    foaf:familyName "Dekoninck"@en;
+    rdfs:label "Demian Dekoninck"@en.
+:me foaf:knows p:demian_dekoninck.
