@@ -1,0 +1,22 @@
+\NeedsTeXFormat{LaTeX2e}[1994/06/01] % least version to use
+\ProvidesPackage{packages/customcommands}[2020/02/10 v1.0 My own commands] % needs same name as file name
+
+
+
+\usepackage{hyperref}
+
+\newcommand{\figureref}[1]{\hyperref[#1]{Figuur \ref{#1}}}
+\newcommand{\formularef}[1]{\hyperref[#1]{Formule \ref{#1}}}
+\newcommand{\attachmentref}[1]{\hyperref[#1]{Bijlage \ref{#1} op pagina \pageref{#1}}}
+\newcommand{\chapterref}[1]{\hyperref[#1]{Hoofdstuk \ref{#1}}}
+\newcommand{\sectionref}[1]{\hyperref[#1]{Sectie \ref{#1}}}
+\newcommand{\subsectionref}[1]{\hyperref[#1]{Subsectie \ref{#1}}}
+\newcommand{\subsubsectionref}[1]{\hyperref[#1]{Subsubsectie \ref{#1}}}
+\newcommand{\listingref}[1]{\hyperref[#1]{Listing \ref{#1}}}
+\newcommand{\tableref}[1]{\hyperref[#1]{Tabel \ref{#1}}}
+
+
+
+
+
+\endinput % must be last command

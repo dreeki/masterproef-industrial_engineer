@@ -1,0 +1,109 @@
+\section{RDF}
+\label{sec:rdf}
+
+RDF staat voor \textit{Resource Description Framework}. Het \textit{World Wide Web} is gemaakt voor mensen, en hoewel machines het kunnen lezen kunnen ze het niet altijd interpreteren. Het doel van RDF is om een algemene methode te verzien om relaties tussen data objecten te beschrijven. Zo is RDF ontstaan in een poging om metadata te maken. Metadata wordt gezien als data over data, maar kan beter geïnterpreteerd worden als data die \textit{web resources} beschrijven. RDF blijkt een zeer effectieve manier om informatie van verschillende bronnen te kunnen integreren door de informatie los te koppelen van zijn schema. Op deze manier kunnen de gegevens ook tegelijkertijd opgezocht worden. Zo poogt het dus om informatie op het web interpreteerbaar te maken voor machines. RDF steunt op de bestaande web standaarden zoals XML en URI. XML is echter slechts een mogelijke syntax, er zijn verschillende andere manieren mogelijk om dezelfde RDF data te representeren. Het algemeen doel van RDF is het definiëren van een mechanisme voor het beschrijven van \textit{resources} die geen veronderstellingen maken van een specifiek domein, noch een semantiek definiëren \cite{lassila1998resource}.
+
+
+
+
+\subsection{RDF data model}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\linewidth]{images/spo.png}
+    \caption{RDF statement}
+    \label{fig:spo}
+\end{figure}
+
+De onderliggende structuur van een RDF uitdrukking is een collectie van triples. Elk van deze triples bestaat uit een \textit{subject} (= onderwerp), \textit{predicate} (= eigenschap) en \textit{object} (= voorwerp). Zoals te zien is in \figureref{fig:spo}, kan dit geïllustreerd worden als een \textit{node-arc-node link} (\textit{node} is een knoop, terwijl \textit{arc} een tak is). Deze collectie van triples kan bijgevolg gezien worden als een graaf. Hierbij is de richting van de \textit{arc} belangrijk, deze wijst in de richting van het \textit{object}. \cite{klyne2009resource}.
+
+Eén enkele triple weerspiegelt een eenvoudige zin. Bij een kort terugblikken naar \figureref{fig:linked_data_example} is hetvolgende triple te zien: (\textit{Alice - Knows - Bob}). Deze triple staat letterlijk voor de zin ``\textit{Alice knows Bob}''. Deze zin hoeft echter niet altijd een exacte vertaling te zijn, bij een ander voorbeeld zien we dat er enkele korte woorden toegevoegd moeten worden om een gramaticaal correcte zin te bekomen: (\textit{Alice - Name - ``Alice''}) wordt dan weer ``Alice has name Alice''. Dit is een minder zinvol voorbeeld, maar het kan hier evenwel over een emailadres of een leeftijd gaan.
+
+
+
+\subsubsection{URI-gebaseerde vocabulair}
+Een \textit{node} kan een URI, een \textit{literal} of \textit{blank} zijn. Een URI referentie of een \textit{literal} die gebruikt wordt als \textit{node} identificeerd waar de \textit{node} voor staat. Een URI referentie die gebruikt wordt als \textit{predicate} beschrijft dan weer de relatie tussen de ``dingen'' in de \textit{nodes} die geconnecteerd worden. Een \textit{blank node} is een \textit{node}, die louter staat voor een unieke code die gebruikt kan worden in één of meer RDF uitdrukkingen \cite{klyne2009resource}.
+
+
+
+\subsubsection{Literals}
+\textit{Literals} worden gebruikt om waarden zoals nummers en datums te identificeren. Elke \textit{literal} kan echter ook voorgesteld worden door een URI, maar vaak is het intuïtiever om een \textit{literal} te gebruiken. Een \textit{literal} kan enkel in het \textit{object} van de RDF uitdrukking staan, dus niet in het \textit{subject} of \textit{predicate}. Er bestaan twee soorten \textit{literals} \cite{klyne2009resource}:
+\begin{enumerate}
+    \item \textbf{\textit{Plain literal}}: deze \textit{literal} staat voor een \textit{string} die gecombineerd is met een optionele taal \textit{tag}. Deze wordt gebruikt om gewone tekst weer te geven en eventueel bij te plaatsen in welke taal deze tekst is.
+    \item \textbf{\textit{Typed literal}}: deze \textit{literal} staat voor een \textit{string} die gecombineerd is met een \textit{datatype} URI. Deze URI wordt gebruikt om aan te duiden hoe deze informate geïnterpreteerd moet worden.
+\end{enumerate}
+
+Twee literals zijn gelijk indien alle volgende regels voldoen \cite{klyne2009resource}:
+\begin{itemize}
+    \item Beide strings zijn identiek.
+    \item Ofwel hebben beide of geen van beide taal tags.
+    \item Als ze taal tags hebben moeten deze identiek zijn.
+    \item Ofwel hebben beide of geen van beide \textit{datatype} URIs.
+    \item Als ze \textit{datatype} URIs hebben moeten deze identiek zijn.
+\end{itemize}
+
+
+
+
+\subsection{RDF serialisatie formaat}
+\label{subsec:rdf_format}
+Het is belangrijk te onthouden dat RDF geen data formaat is, maar een data model. Het is een beschrijving dat de gegevens zich moeten voorstellen in de vorm van (\textit{subject, predicate, object}) triples. Alvorens met een RDF graag kan publiceren, zullen de data moeten geserialiseerd moeten worden, gebruik makend van een RDF syntax. De W3C heeft twee formaten gestandardiseerd (namelijk RDF/XML en RDFa), maar daarnaast zijn er nog verschillende andere mogelijkheden. Er zijn zijn welliswaar nog meer mogelijkheden dan degene hieronder vermeld. Bij elk van deze mogelijkheden zal hetzelfde voorbeeld telkens herschreven worden in een ander formaat \cite{heath2011linked}.
+
+Om de verschillende formaten duidelijk te maken (gebruik makend van principes zoals URIs, \textit{literals} zowel met als zonder \textit{datatype}) is er zal er bij de verschillende formaten éénzelfde voorbeeld uitgeschreven staan. Dit voorbeeld gaat over hoe het profiel van een persoon er uit zou kunnen zien. Aangezien het Turtle formaat het meest leesbare is, is enkel hier de uitgebreide versie zichtbaar. Bij andere formaten is dit profiel sterk ingekort. Bij dit voorbeeld zijn ook verschillende ontologieën gebruikt, zoals onder andere ``foaf'' en ``dbo''. Bij dit voorbeeld is ook te zien dat de \textit{predicate} ``a'' gebruikt wordt. Dit is een alternatief voor ``rdf:type'', maar verder volledig equivalent.
+
+\subsubsection{RDF/XML}
+De RDF/XML syntax is gestandardiseerd door het W3C en is wijdgebruikt om Linked Data te publiceren op het web. Deze syntax wordt echter gezien als moeilijk te lezen en te schrijven voor mensen, waardoor deze steeds minder vaak gebruikt wordt. Bij deze syntax wordt het RDF data model voorgesteld aan de hand van XML \cite{manola2004rdf}.
+
+Een ingekorte versie van het voorbeeld beschreven in \subsectionref{subsec:rdf_format} in RDF/XML formaat is te zien in \listingref{listing:profile_xml}.
+
+\begin{listing}[ht]
+    \inputminted{xml}{data/profile_short.rdf}
+    \caption{Profile in RDF/XML}
+    \label{listing:profile_xml}
+\end{listing}
+
+
+\subsubsection{RDFa}
+RDFa is dan weer een serialisatie formaat dat de RDF triples zal integreren in HTML documenten. In eerdere pogingen om RDF en HTML te mixen werden de RDF triples geïntegreerd in de \textit{comments}. Dit is hierbij niet het geval. Bij RDFa zijn de RDF triples verweven in de HTML DOM (= \textit{Document Object Model}). Dit betekent dat de bestaande inhoud van de pagina's aangeduid wordt met RDFa door de HTML code aan te passen. Hierdoor wordt de gestructureerde data blootgesteld aan het web \cite{adida2012rdfa}.
+
+Een ingekorte versie van het voorbeeld beschreven in \subsectionref{subsec:rdf_format} in RDFa formaat is te zien in \listingref{listing:profile_rdfa}.
+
+\begin{listing}[ht]
+    \inputminted{html}{data/profile_short.html}
+    \caption{Profile in RDFa}
+    \label{listing:profile_rdfa}
+\end{listing}
+
+
+\subsubsection{Turtle}
+Turtle is een \textit{plain text} formaat voor de serialisatie van RDF gegevens. Turtle voorziet prefixen voor \textit{namespaces} en andere verkortingen. Zo worden de prefixen bovenaan geschreven en moet elk triple eindigen op een ``.'', ``;'' of ``,''. Een ``.'' betekent dat de volgende triple volledig los staat van de huidige triple. Een ``;'' betekent dat de volgende triple hetzelfde \textit{subject} heeft als de huidige triple, waardoor er slechts twee waarden (\textit{predicate} en \textit{object}) op de volgende lijn staan. tenslotte betekent een ``,'' dat de volgende triple hetzelfde \textit{subject} en \textit{predicate} heeft als de huidige triple, waardoor er slechts één waarde (\textit{object}) op de volgende lijn staat. Deze verkortingen zijn echter geen verplichting. Aangezien Turtle zowel zeer leesbaar als schrijfbaar is, wordt deze in de meeste visuele teksten gebruikt. Vanwege de leesbaarheid zal dit formaat in de rest van deze scriptie (op de bijlagen na) ook gebruikt worden  \cite{beckett2014rdfturtle}.
+
+Een uitgebreide versie van het voorbeeld beschreven in \subsectionref{subsec:rdf_format} in Turtle formaat is te zien in \listingref{listing:profile_turtle}.
+
+\begin{listing}[ht]
+    \inputminted{turtle}{data/profile.ttl}
+    \caption{Extended profile in Turtle}
+    \label{listing:profile_turtle}
+\end{listing}
+
+\subsubsection{N-Triples}
+Het N-Triples formaat is een subset van Turtle. Hierbij zijn de \textit{features} zoals prefixen en verkortingen weggelaten. Hierbij valt het op dat dit serialisatie formaat veel redundantie heeft, zoals alle URIs die in elk triple volledig moeten gespecifieerd worden. Hierdoor zijn deze N-Triples bestanden veel groter dan overeenkomende Turtle bestanden. Naast het nadeel van grotere bestanden heeft deze redundantie ook een zeer groot voordeel. Dankzij de redundantie is het mogelijk om N-Triples bestanden lijn per lijn te overlopen, waardoor het ideaal is voor het inladen van bestanden die te groot zijn om volledig in het geheugen te laden. Daarnaast zijn N-Triples ook zeer ontvankelijk voor compressie, waardoor het netwerk verkeer gereduceerd wordt bij het uitwisselen van bestanden. Hierdoor is het N-Triples formaat de standaard voor het uitwisselen van zeer grote dumps van Linked Data (bijvoorbeeld voor backup doelen) \cite{beckett2014rdfntriples}.
+
+Een ingekorte versie van het voorbeeld beschreven in \subsectionref{subsec:rdf_format} in N-Triples formaat is te zien in \listingref{listing:profile_ntriples}. Hierbij zijn de lijnen gesplitst zodat deze op het blad zouden passen.
+
+\begin{listing}[ht]
+    \inputminted{turtle}{data/profile_short.nt}
+    \caption{Profile in N-Triples}
+    \label{listing:profile_ntriples}
+\end{listing}
+
+
+\subsubsection{JSON-LD}
+JSON-LD staat voor JSON-LinkedData en is een \textit{lightweight} Linked Data formaat. JSON-LD is makkelijk leesbaar en schrijfbaar voor mensen. Het is gebaseerd op het reeds langer bestaande JSON formaat. Aangezien JSON al langer gebruikt wordt voor het doorgeven van data, is JSON-LD het ideale formaat om Linked Data door te geven in een programmeeromgeving. Aangezien het dezelfde syntax heeft als JSON, kan het zonder andere software te installeren onmiddelijk gebruikt worden om RDF data te parsen en te manipuleren. Aangezien JSON-LD zo handig in gebruik is, zal dit het meest gebruikte formaat zijn bij de implementaties die gemaakt zijn bij deze scriptie \cite{sporny2012json}.
+
+Een (nog sterker) ingekorte versie van het voorbeeld beschreven in \subsectionref{subsec:rdf_format} in JSON-LD formaat is te zien in \listingref{listing:profile_jsonld}.
+
+\begin{listing}[ht]
+    \inputminted{json}{data/profile_short.jsonld}
+    \caption{Profile in JSON-LD}
+    \label{listing:profile_jsonld}
+\end{listing}

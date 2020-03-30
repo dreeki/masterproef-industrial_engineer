@@ -1,0 +1,57 @@
+% !TeX spellcheck = en_GB
+%%%%%%%%%%%%%%%%%%%%%%%%%% phdsymp_sample2e.tex %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% changes for phdsymp.cls marked with !PN
+%% except all occ. of phdsymp.sty changed phdsymp.cls
+%%%%%%%%%%              %%%%%%%%%%%%%
+%%%%%%%%%% More information: see the header of phdsymp.cls %%%%%%%%%%%%%
+%%%%%%%%%%              %%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\documentclass[twocolumn]{phdsymp} %!PN
+
+\usepackage[english]{babel}  % Voor nederlandstalige hyphenatie (woordsplitsing)
+
+\usepackage{graphicx}     % Om figuren te kunnen verwerken
+\usepackage{graphics}			% Om figuren te verwerken.
+
+\graphicspath{images/}
+
+\PassOptionsToPackage{hyphens}{url}
+\usepackage{url}
+
+\usepackage[T1]{fontenc}
+
+\hyphenation{}
+
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+ T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+\newtheorem{theorem}{Theorem}
+
+\begin{document}
+
+\title{Client-side evaluation of GeoSPARQL queries over heterogeneous data sources} %!PN
+
+\author{Andreas De Witte}
+
+\supervisor{dr. ing. Pieter Colpaert, dr. ir. Ruben Taelman, Brecht Van de Vyvere, Julian Andres Rojas Melendez}
+
+\maketitle
+
+\begin{abstract}
+    On the internet as it's currently known, users can easily understand pages of websites. This is not the case for computers, they need to do a lot of effort to substract both meaning and context from sentences. The web, as it is today, is not build to be interpreted by machines. Thanks to the Semantic Web, which is an extension to the current web, it is possible for machines to understand the pages of websites.
+
+    It is currently possible to query for linked data to limited amount of data sources, because very few data sources support linked data. Theses queries are executed with SPARQL, which has different working implementations. For geographical queries, GeoSPARQL is needed. However, there are only few implementations of GeoSPARQL and most of these implementations are working incorrect.
+
+    In this work, a limited implementation of GeoSPARQL is made in order to request data in RDF format and calculate the topological relations in this data. With this implementation, it has been tested for which interfaces these topological relations can be calculated on the client-side. This paper gives new insights about handling geographical queries on the client-side.
+
+    Like this, it appeared to be very simple to calculate the topological relations on the client-side when the data source is a TPF-interface. However, when the source is a SPARQL-endpoint, this is harder to achieve, but still possible. It's also possible to detect whether the source is a GeoSPARQL-endpoint. If this is the case, the entire query can be handled at the source.
+    
+    The conclusion can be made that handling these kind of queries is better on the client-side. like this, the entire query can be processed, even when the source doesn't fully support it. This scription is mostly useful for computer scientists who are developing the web, or if they want to start doing so. But it can also be used by enthousiasts for receiving a better understanding of the Semantic Web and it's possibilities.
+\end{abstract}
+
+\begin{keywords}
+    Semantic Web, linked data, OGC, GeoSPARQL, client-side, topolocical relation
+\end{keywords}
+\end{document}

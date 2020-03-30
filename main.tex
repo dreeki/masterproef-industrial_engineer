@@ -1,4 +1,3 @@
-%
 % Master thesis template for Ghent University (2018)
 %
 %
@@ -49,7 +48,6 @@
 \usepackage{graphicx}
 \usepackage{epstopdf}
 \epstopdfsetup{update} % only regenerate pdf files when eps file is newer
-
 \usepackage[chapter]{minted}                           % for modern code highlighting
 \newenvironment{code}{\captionsetup{type=listing}}{}   % To get multiline code fragments working: https://tex.stackexchange.com/a/53540/72273
 
@@ -58,7 +56,6 @@
 \PassOptionsToPackage{hyphens}{url}
 \usepackage{hyperref}
 \usepackage{url}
-\usepackage{titling}			   % For \thetitle and \theauthor
 \usepackage{quotchap}              % For the fancy quotes next to the chapter titles
 \usepackage{wrapfig}               % Handy package to position images
 \usepackage[numbers]{natbib}       % For bibliography; use numeric citations
@@ -80,6 +77,26 @@
 \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 \newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+
+%
+% Own packages added
+%
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{xcolor}
+\usepackage{tabularx}
+\usepackage[acronym, toc]{glossaries} % moeilijke woorden en afkortingen + in toc plaatsen
+\usepackage{titling}			   % For \thetitle and \theauthor
+\usepackage{multirow} % multi row gebruiken in tables
+\usepackage{titlesec, blindtext, color, colortbl}
+
+\usepackage{packages/customcommands}
+\usepackage{packages/customcolors}
+
+
+
+
+
 
 %
 % Support for splitting Dutch words correctly
@@ -116,36 +133,40 @@
 %
 % Set the title and your name
 %
-\title{The user perceived performance of route planning APIs}
-\author{Bert Marcelis}
-
+\title{Client-side evaluatie van GeoSPARQL opvragingen over heterogene gegevensbronnen}
+\author{Andreas De Witte}
+\include{special_chapters/woordenlijst} % lijst van speciale woorden
 %
 %  END OF HEADER
 %  The actual latex document content starts here.
 %
 \begin{document}
 \nocite{*}
-\include{chapters/Voorblad}           % Front matter
+\include{special_chapters/Voorblad}           % Front matter
 \newpage\thispagestyle{empty}\mbox{}  % White page
-\include{chapters/Dankwoord}          % Word of thanks
+\include{special_chapters/Dankwoord}          % Word of thanks
 \newpage\thispagestyle{empty}\mbox{}  % White page
-\includepdf[pages={-}]{abstract.pdf}  % Extended Abstract
+\includepdf[pages={-}]{abstractNL.pdf}  % Extended Abstract not done yet
+\includepdf[pages={-}]{abstractEN.pdf}  % Extended Abstract not done yet
 \tableofcontents                      % Table of Contents
 
+
+\printglossary % moeilijke woorden tonen
+\printglossary[type=\acronymtype] % afkortingen tonen
+\todo{lijst van woorden aanvullen en naar verwijzen in tekst!}
 \listoffigures                        % List of figures
 \listoftables                         % List of tables
 \listoflistings                       % List of listings (code fragments)
+\listoftodos 						  % show list of all to do's
 
 % Include the main chapters of the thesis below
 %
+\include{chapters/Chapter-Inleiding}
+\include{chapters/Chapter-Literatuurstudie}
+\include{chapters/Chapter-Implementatie}
+\include{special_chapters/Bibliografie}
 
-% https://twitter.com/Stwaf/status/989531577947492358
-% \include{chapters/Chapter1-Inleiding-Literatuurstudie}
-% \include{chapters/Chapter2-Implementatie}
-% \include{chapters/Chapter3-Onderzoek}
-% \include{chapters/Chapter4-Resultaten}
-% \include{chapters/Chapter5-Interpretatie}
-\include{chapters/Bibliografie}
-%\include{chapters/Bijlagen}
+\todo{moeilijk woorden lijst, afkortingen: W3C, CSV, TPF, JSON -> allemaal opzoeken en overal naar refereren}
+\todo{zoeken naar data en informatie, mogelijks vervangen door gegevens}
 
 \end{document}
