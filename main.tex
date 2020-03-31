@@ -85,13 +85,15 @@
 \usepackage[colorinlistoftodos]{todonotes}
 \usepackage{xcolor}
 \usepackage{tabularx}
-\usepackage[acronym, toc]{glossaries} % moeilijke woorden en afkortingen + in toc plaatsen
+\usepackage[acronym,toc]{glossaries} % moeilijke woorden en afkortingen + in toc plaatsen
 \usepackage{titling}			   % For \thetitle and \theauthor
 \usepackage{multirow} % multi row gebruiken in tables
 \usepackage{titlesec, blindtext, color, colortbl}
 
 \usepackage{packages/customcommands}
 \usepackage{packages/customcolors}
+
+\renewcommand*{\acronymname}{Lijst van afkortingen}
 
 
 
@@ -112,7 +114,7 @@
 \newfontfamily{\ugentfont}{UGent Panno Text}
 
 % Manually specify additional hypnations for words
-\hyphenation{Linked Connections LC2Irail relatief aanwezig worden}
+\hyphenation{heterogene}
 
 %
 % Translated strings. If these aren't set, the English words are used.
@@ -141,7 +143,6 @@
 %  The actual latex document content starts here.
 %
 \begin{document}
-\nocite{*}
 \include{special_chapters/Voorblad}           % Front matter
 \newpage\thispagestyle{empty}\mbox{}  % White page
 \include{special_chapters/Dankwoord}          % Word of thanks
@@ -151,12 +152,13 @@
 \tableofcontents                      % Table of Contents
 
 
-\printglossary % moeilijke woorden tonen
-\printglossary[type=\acronymtype] % afkortingen tonen
-\todo{lijst van woorden aanvullen en naar verwijzen in tekst!}
 \listoffigures                        % List of figures
 \listoftables                         % List of tables
 \listoflistings                       % List of listings (code fragments)
+\addcontentsline{toc}{chapter}{Lijst van listings} % List of listings in toc
+\printglossary % moeilijke woorden tonen
+\printglossary[type=\acronymtype] % afkortingen tonen
+\todo{lijst van woorden aanvullen en naar verwijzen in tekst!}
 \listoftodos 						  % show list of all to do's
 
 % Include the main chapters of the thesis below
@@ -166,7 +168,8 @@
 \include{chapters/Chapter-Implementatie}
 \include{special_chapters/Bibliografie}
 
-\todo{moeilijk woorden lijst, afkortingen: W3C, CSV, TPF, JSON -> allemaal opzoeken en overal naar refereren}
+\todo{citaat bij begin van een hoofdstuk is fancy}
 \todo{zoeken naar data en informatie, mogelijks vervangen door gegevens}
+\todo{acroniemen en moeilijke woorden tonen!}
 
 \end{document}
