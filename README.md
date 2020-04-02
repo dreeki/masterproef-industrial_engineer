@@ -49,7 +49,7 @@ Zo kan geconcludeerd worden dat het afhandelen van deze opvragingen veel beter o
             "tools": [
                 "lualatex",
                 "bibtex",
-                "makeglossaries main",
+                "makeglossaries",
                 "lualatex",
                 "lualatex"
             ]
@@ -126,5 +126,5 @@ Zo kan geconcludeerd worden dat het afhandelen van deze opvragingen veel beter o
 ```
 4. Herlaad het VS Code venster: ⌘ + Shift + P en zoek op 'Reload window' (Windows users: waarschijnlijk `F1`)
 5. Als je nu `main.tex` opent, zou er een icoon `TeX` moeten bijkomen links in het venster
-6. Klik op dat icoon en voer het commando `Build LaTeX project` -> `Recipe: lualatex -> bibtext -> lualatex x 2` uit
+6. Klik op dat icoon en voer het commando `Build LaTeX project` -> `Recipe: lualatex -> bibtext -> makeglossaries -> lualatex x 2` uit
 7. Je zou nu een `main.pdf` moeten hebben en alle build files zouden weg moeten zijn (met uitzondering van het log-bestand om eventueel te debuggen)
