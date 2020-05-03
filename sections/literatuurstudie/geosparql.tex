@@ -39,6 +39,7 @@ GeoSPARQL voorzien een hele lijst met properties die voorzien moet worden. Vanwe
 
 
 \subsection{Topologische relaties}
+\label{subsec:topologische_relaties}
 Om topologische relaties te kunnen beschrijven, wordt er gebruik gemaakt van drie relatiefamilies. Deze relatiefamilies beschrijven grotendeels gelijkaardige topologische relaties, maar met licht verschillende specificaties. De drie relatiefamilies zijn ``Simple Features (sf)'', ``Egenhofer (eh)'' en ``RCC8''. Om de spatiale relaties te beschrijven wordt gebruik gemaakt van een ``DE-9IM'' patroon. Voordat de relatiefamilies uitgelegd kunnen worden, is een volledig begrip van de DE-9IM notatie noodzakelijk.
 
 \subsubsection{DE-9IM}
@@ -101,6 +102,7 @@ Ten slotte kunnen ook niet alle relaties voorkomen bij elke object-combinatie (b
 
 
 \subsubsection{Simple Features}
+\label{subsubsec:simple_features}
 De eerste relatiefamilie is de ``Simple Feature'' family. De regels van deze familie worden weergegeven in \tableref{tab:topo_sf}. Hierin is exact te zien hoe de implementaties verwacht worden te werken. Om de grootte van deze scriptie in te perken is enkel deze relatiefamilie uitgewerkt en wordt dus ook enkel deze relatiefamilie besproken. Indien het voorbeeld van de ``contains'' functie besproken wordt, moet dit als volgt geïnterpreteerd worden: ``a contains b is waar, indien de intersectie van hun \textit{interiors} bestaat en hierbovenop de intersectie van de \textit{exterior} van a met zowel de \textit{interior} als de \textit{boundary} van b niet bestaat''. Dit betekent dus dat b in a ligt en dat geen enkel deel van b buiten a ligt \cite{ogcdocs}.
 
 
@@ -174,7 +176,18 @@ Zo heeft het OGC een template gemaakt om dit te herschrijven. Bij deze template 
     \item \textbf{ogc:asGeomLiteral}: deze placeholder staat voor één van de serialisatie technieken om het object te bekomen.
 \end{itemize}
 
-De uiteindelijke template voor het herschrijven van de query is te vinden in \listingref{listing:geosparql_rewrite_query}.
+Een voorbeeld voor het herschrijven van een query is te vinden in \listingref{listing:geosparql_query_to_rewrite}, maar de uiteindelijke template voor het herschrijven van de query is te vinden in \listingref{listing:geosparql_rewrite_query}.
+
+\begin{listing}[ht]
+    \begin{minted}{sparql}
+        select *
+        where {
+            { ?f1 ogc:relation ?f2 . }
+        }
+    \end{minted}
+    \caption{Query to rewrite.}
+    \label{listing:geosparql_query_to_rewrite}
+\end{listing}
 
 \begin{listing}[ht]
     \begin{minted}{sparql}

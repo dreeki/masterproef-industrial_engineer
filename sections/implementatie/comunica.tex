@@ -1,0 +1,86 @@
+\section{Comunica}
+Zoals eerder aangehaald speelt Comunica een zeer belangrijke rol bij deze implementatie van GeoSPARQL (zie \sectionref{sec:comunica}). Hierbij (dankzij de modulariteit) is het mogelijk om een actor aan te maken voor het afhandelen van GeoSPARQL functionaliteiten. Deze actor maakt gebruik van ``sparqlalgebrajs'' voor het omvormen van de SPARQL query naar SPARQL algebra en van ``sparqlee'' voor het correct uitwerken van deze SPARQL algebra. 
+
+\subsection{Sparqlalgebrajs}
+\begin{listing}[ht]
+    \begin{minted}{sparql}
+        SELECT ?f
+        WHERE {
+            my:A my:hasExactGeometry ?aGeom .
+            ?aGeom geo:asWKT ?aWKT .
+            ?f my:hasExactGeometry ?fGeom .
+            ?fGeom geo:asWKT ?fWKT .
+            FILTER (geof:sfContains(?aWKT, ?fWKT) && !sameTerm(?aWKT, ?fWKT))
+        }
+    \end{minted}
+    \caption{Example SPARQL query.}
+    \label{listing:sparqlalgebrajs_query}
+\end{listing}
+
+\begin{listing}[ht]
+    \begin{minted}{json}
+        {
+        ...,
+        expression: {
+            type: 'expression',
+            expressionType: 'operator',
+            operator: '&&',
+            args: [
+            {
+                type: 'expression',
+                expressionType: 'named',
+                name: NamedNode {
+                id: 'http://www.opengis.net/def/function/geosparql/sfContains'
+                },
+                args: [
+                {
+                    type: 'expression',
+                    expressionType: 'term',
+                    term: Variable { id: '?aWKT' }
+                },
+                {
+                    type: 'expression',
+                    expressionType: 'term',
+                    term: Variable { id: '?fWKT' }
+                }
+                ]
+            },
+            {
+                type: 'expression',
+                expressionType: 'operator',
+                operator: '!',
+                args: [
+                {
+                    type: 'expression',
+                    expressionType: 'operator',
+                    operator: 'sameterm',
+                    args: [
+                    {
+                        type: 'expression',
+                        expressionType: 'term',
+                        term: Variable { id: '?aWKT' }
+                    },
+                    {
+                        type: 'expression',
+                        expressionType: 'term',
+                        term: Variable { id: '?fWKT' }
+                    }
+                    ]
+                }
+                ]
+            }
+            ]
+        }
+        }
+    \end{minted}
+    \caption{Example SPARQL algebra.}
+    \label{listing:sparqlalgebrajs_algebra}
+\end{listing}
+
+Sparqlalgebrajs zorgt er onder andere voor dat de filter omgezet wordt naar een boomstructuur die recursief doorlopen kan worden. Deze omvorming is te zien in \listingref{listing:sparqlalgebrajs_query} en \listingref{listing:sparqlalgebrajs_algebra}. In \listingref{listing:sparqlalgebrajs_query} is een voorbeeld van een correct GeoSPARQL query te zien (ter informatie: deze query haalt alle vormen in die geografisch in ``my:A'' liggen, maar niet ``my:A'' zelf zijn), maar voor het uitvoeren van deze query moet deze eerst omgevormd worden naar SPARQL algebra. Vanwege de grootte van het resultaat is slechts de essentie hiervan terug te vinden in \listingref{listing:sparqlalgebrajs_algebra}. Aangezien het gaat over de filter functie, is enkel dat deel terug te vinden. Hierbij is zeer duidelijk de recursieve boomstructuur te vinden, waarbij in de wortel van de boom de operator ``\&\&'' te zien is. Dit blad in de boom zal vervolgens een linker- en rechterkind hebben. Deze zijn te vinden in het veld ``args'' en krijgen de waarde van opnieuw de uitkomst van twee bladeren. Ditmaal zijnde de ``sfContains'' functie aan de linker helft en de ``!'' operator aan de rechter helft. Dit wordt op deze manier recursief uitgevoerd.
+
+\subsection{Sparqlee}
+Sparqlee is een SPARQL \textit{expression evaluator}. Dit betekent dat sparqlee een SPARQL algebra expressie zal evalueren. Sparqlee is bij deze implementatie gebruikt voor het maken van de GeoSPARQL functionaliteiten, omdat sparqlee zelf als de recursieve boomstructuur van sparqlalgebrajs volledig afhandelt voor SPARQL queries. Dit is belangrijk voor de belangrijkste vereiste voor GeoSPARQL, namelijk het hebben van een werkende SPARQL implementatie. Zo zal sparqlee eerst de volledige expressie controleren om te zien of het geheel verwerkt kan worden. Dit is dus enkel het geval als sparqlee de verschillende functies en operators correct kan afhandelen. In dit specifieke geval betekent het dus dat sparqlee de GeoSPARQL functies moet kunnen uitvoeren. Hiervoor is dezelfde programmeerstijl gehanteerd als deze die reeds aanwezig is in sparqlee zelf.
+
+\subsection{Verbeteringen}
+Een eerste verbetering aan deze eerste keuze is meteen dat deze GeoSPARQL functies niet in sparqlee gemaakt zouden mogen worden. Sparqlee is louter een SPARQL \textit{expression evaluator}, wat betekent dat deze niet meer dan enkel SPARQL hoort te ondersteunen. De oplossing hiervoor is het ondersteunen van \textit{custom functions} binnen sparqlee (dit staat bovendien binnen de specificaties van SPARQL). Indien deze \textit{custom functions} ondersteund zouden worden binnen sparqlee, dan zou het mogelijk zijn om de functies te implementeren binnen de hiervoor gemaakte actor in Comunica, zodat deze dan geïnjecteerd kunnen worden in sparqlee. Het implementeren van deze \textit{custom functions} functionaliteit binnen sparqlee is echter te complex en tijdrovend voor de eerder kleine impact op deze masterproef. Dit blijft echter wel een vereiste voor de modulariteit, maar dit wordt gezien als \textit{future work}.

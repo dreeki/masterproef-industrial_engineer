@@ -40,15 +40,15 @@
 \maketitle
 
 \begin{abstract}
-    Op het internet zoals het nu gekend is, kunnen gebruikers makkelijk pagina's van websites begrijpen. Voor computers is dit echter niet het geval, hier moet enorm veel moeite gedaan worden om betekenis en context uit de zinnen te onleden. Het web zoals het nu is, is niet gebouwd om begrepen te worden door machines. Dankzij het semantische web, wat een uitbreiding op het huidige web is, is het wel mogelijk voor machines om de pagina's van websites te begrijpen.
+    Op het web zoals het nu gekend is, kunnen gebruikers makkelijk pagina's van websites begrijpen. Voor computers is dit echter niet het geval, hier moet enorm veel moeite gedaan worden om betekenis en context uit de zinnen te onleden. Het web zoals het nu is, is niet gebouwd om begrepen te worden door machines. Dankzij het semantische web, wat een uitbreiding op het huidige web is, is het wel mogelijk voor machines om de pagina's van websites te begrijpen.
     
     Momenteel is het reeds mogelijk om opzoekingen naar gelinkte data te doen over een beperkt aantal gegevensbronnen, omdat weinig gegevensbronnen gelinkte data ondersteunen. Deze opzoekingen gebeuren aan de hand van SPARQL, waar verschillende werkende implementaties van zijn. Om geografische opvragingen te doen wordt GeoSPARQL gebruikt. Hiervan zijn echter weinig implementaties gemaakt en deze implementaties hebben in vele gevallen incorrecte gedragingen.
     
-    In dit werk is een beperkte implementatie van GeoSPARQL gemaakt om zo de informatie in RDF formaat op te halen en topologische relaties uit te rekenen. Hierbij is getest bij welk soorten interfaces deze topologische relaties op de client-side kunnen berekent worden. Deze paper geeft nieuwe inzichten over het afhandelen van deze geografische opvragingen op de client-side.
-    
+    In dit werk is een beperkte implementatie van GeoSPARQL gemaakt om zo de informatie in RDF formaat op te halen en topologische relaties uit te rekenen. Hierbij is getest bij welk soorten interfaces deze topologische relaties op de client-side kunnen berekent worden. Dit op de client-side doen is belangrijk voor vele redenen. Eén van de belangrijkste redenen is dat deze berekeningen een server zouden kunnen lam leggen, terwijl deze berekeningen voor slechts één gebruiker op de client-side zeer goed mogelijk zijn. In andere woorden, dit op de client-side doen is een effectieve manier om de belasting te verspreiden. Deze paper geeft nieuwe inzichten over het afhandelen van deze geografische opvragingen op de client-side.
+
     Zo bleek dat het zeer eenvoudig is om topologische relaties te berekenen op de client-side wanneer de bron een TPF-interface is. Wanneer de bron echter een SPARQL-endpoint is, is dit moeilijker maar nog steeds mogelijk. Ook is het mogelijk te detecteren of de bron een GeoSPARQL-endpoint is, dan kan het geheel afgehandelt worden door de bron.
     
-    Zo kan geconcludeerd worden dat het afhandelen van deze opvragingen veel beter op de client-side gedaan kan worden. Zo kan het geheel van de opvraging weergegeven worden, zelfs wanneer de bron dit zelf niet ondersteund. Deze scriptie is vooral nuttig voor computerwetenschappers die mee werken aan de ontwikkeling van het web of dit wensen te doen, maar kan ook gebruikt worden door geïnteresseerden voor het verkrijgen van een beter begrip van het semantische web en zijn mogelijkheden.
+    Zo kan geconcludeerd worden dat het afhandelen van deze opvragingen veel beter op de client-side gedaan kan worden. Zo kan het geheel van de opvraging weergegeven worden, zelfs wanneer de bron dit zelf niet ondersteund. Deze scriptie is vooral nuttig voor computerwetenschappers die echte experts zijn van het Semantische Web, maar kan ook gebruikt worden door geïnteresseerden voor het verkrijgen van een beter begrip van het semantische web en zijn mogelijkheden.
 \end{abstract}
 
 \begin{keywords}

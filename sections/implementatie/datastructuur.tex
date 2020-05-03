@@ -1,0 +1,11 @@
+\section{Datastructuur}
+Voordat er begonnen kan worden aan de effectieve oplossing van GeoSPARQL functies, moet de gepaste datastructuur gekozen worden om dit te kunnen realiseren. Zoals beschreven in \sectionref{subsec:geosparql_architecture}, moet er ondersteuning zijn voor zowel ``Geometry'' als ``Feature'' objecten. 
+
+\subsection{GeoJSON}
+Om dit te kunnen ondersteunen is er gekozen voor een reeds meer gebruikt formaat, genaamd GeoJSON. GeoJSON biedt ondersteuning voor zowel ``Geometry'' als ``Feature'' objecten, waarbij ``Feature'' objecten een ``Geometry'' object bevatten, naast andere attributen. Bovendien ondersteund GeoJSON de volgende vormen: ``Point'', ``LineString'', ``Polygon'', ``MultiPoint'', ``MultiLineString'' en ``MultiPolygon''. Op deze manier zijn alle voorwaarden van de architectuur voor GeoSPARQL voldaan. Het volgende probleem is dan echter weer het volgende: hoe kan omgegaan worden van WKT string naar GeoSPARQL?
+
+\subsection{Terraformer}
+Terraformer is een geografische toolkit voor het werken met onder andere geometrieën, geografie en formaten. Verder is Terraformer opgesplitst in enkele modules. Hier wordt verder (zie \sectionref{sec:topologische_functies}) op terug gekomen, voorlopig wordt enkel verder ingegaan op de Terraformer WKT parser. Deze module is gemaakt om te voorzien in een eenvoudige omzetting van WKT string naar GeoJSON en indien gewenst ook in de omgekeerde richting. Op deze manier kan een geserialiseerde vorm (namelijk WKT string) omgezet worden naar GeoJSON, zodat nu verder gegaan kan worden met de implementatie. 
+
+
+

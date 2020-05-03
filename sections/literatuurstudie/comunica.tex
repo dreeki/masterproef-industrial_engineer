@@ -13,7 +13,7 @@ Dankzij de hoge modulariteit van de Comunica \textit{query engine}, is het mogel
 Heterogene interfaces binnen Comunica zorgen ervoor dat het mogelijk is om gefedereerd te queryen over heterogene bronnen. Zo wordt het bijvoorbeeld mogelijk om queries over eender welke combinatie van SPARQL \textit{endpoints}, \acrshort{tpf} \textit{interfaces}, \textit{datadumps} of andere types van \textit{interfaces} te evalueren \cite{taelman2018comunica}.
 
 \subsubsection{Web gebaseerde technologieën}
-Comunica is geïmplementeerd in JavaScript (of meer specifiek TypeScript) met behulp van web gebaseerde technologieën, specifieker is het geïmplementeerd als een collectie van \textit{Node modules}. Hierbovenop heeft Comunica een \textit{test coverage} van 100\% in alle modules. Hierdoor is het mogelijk om Comunica te gebruiken in zowel browsers, de \textit{command line}, het SPARQL protocol als in gelijk welke web of javascript applicatie \cite{taelman2018comunica}.
+Comunica is geïmplementeerd in JavaScript (of meer specifiek TypeScript) met behulp van web gebaseerde technologieën, specifieker is het geïmplementeerd als een collectie van \textit{Node modules}. Hierbovenop heeft Comunica een \textit{test coverage} van 100\% in alle modules. Hierdoor is het mogelijk om Comunica te gebruiken in zowel browsers, de \textit{command line}, het SPARQL protocol als in gelijk welke web of JavaScript applicatie \cite{taelman2018comunica}.
 
 
 \subsection{Design patterns}
@@ -36,7 +36,7 @@ Daarnaast is er ook een enorme flexibiliteit \textit{at run-time}. Dankzij de ``
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.5\linewidth]{images/comunica-actor-mediator-bus.png}
+    \includegraphics[width=\linewidth]{images/comunica-actor-mediator-bus.png}
     \caption{Actor-Mediator-Bus patroon, foto van ``Comunica: a Modular SPARQL Query Engine for the Web'' \cite{taelman2018comunica}.}
     \label{fig:actor-mediator-bus}
 \end{figure}
@@ -49,6 +49,6 @@ Om tot een besluit te komen over Comunica kunnen er enkele feiten vastgesteld wo
     \item \textbf{\textit{SPARQL query evaluation}}: het moet mogelijk zijn om SPARQL queries op een correcte manier te interpreteren en een resultaat weer te geven.
     \item \textbf{Modulair}: nieuwe functionaliteiten (of bestaande functionaliteiten aanpassen) zou slechts een minimale aanpassing aan bestaande code mogen vereisen. Hierbij kan de gebruiker zelf kiezen welke modules hij wil inpluggen voor zijn persoonlijke \textit{engine}.
     \item \textbf{Heterogene \textit{interfaces}}: de mogelijkheid om te queryen naar verschillende soorten bronnen (zoals \acrshort{tpf} \textit{interfaces}, SPARQL \textit{endpoints} en data dums in RDF) moet mogelijk zijn.
-    \item \textbf{\textit{Federation}}: het moet mogelijk zijn om gefedereerd te queryen. Dit betekent queryen naar verschillende bronnen. In samenhang met de heterogene \textit{interfaces} betekent dit dus queryen naar verschillende bronnen die mogelijks een soort \textit{interface} hebben.
+    \item \textbf{\textit{Federation}}: het moet mogelijk zijn om gefedereerd te queryen. Dit betekent queryen naar verschillende bronnen. In samenhang met de heterogene \textit{interfaces} betekent dit dus queryen naar verschillende bronnen die mogelijks een verschillende soort \textit{interface} hebben.
     \item \textbf{Web gebaseerd}: Comunica is gemaakt met web technologieën zoals Javascript en RDF configuratie bestanden. Hierdoor kan Comunica werken in omgevingen zoals \textit{web browsers}, \textit{local} en zelfs in de \textit{command-line interface}.
 \end{enumerate}
