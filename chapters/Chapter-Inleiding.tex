@@ -1,1 +1,46 @@
 \chapter{Inleiding}
+Het Web is origineel gemaakt om begrepen te worden door mensen. Dit wordt verwezenlijkt door het tonen van dingen op webpagina's en het navigeren met links. Hoe dan ook, het Web is niet gemaakt om geïnterpreteerd te worden door machines. Dit betekent dat menselijke interactie nodig is voor het verkrijgen van informatie en het uitvoeren van dagelijkse taken. Zo is bijvoorbeeld het plannen van een daguitstap complexer dan initieel gedacht wordt. Als eerste moet de agenda van alle betrokken personen vergeleken worden om te weten te komen wanneer iedereen (of het merendeel) vrij is. Vervolgens moet er gecontroleerd worden of de weersverwachtingen ideaal zijn voor de uitstap. Dit is dan nog zonder rekening te houden met de interesses van de verschillende personen, voor het beslissen welk type uitstap gedaan zal worden. Wat als \textit{intelligent agents} dit voor ons zouden kunnen doen (de term \textit{intelligent agents} wordt verder uitgelegd in \sectionref{sec:semantic_web})?
+
+Naast het automatiseren zijn er nog andere problemen met het Web. Zo hebben de grote spelers alle gegevens van de mensen in handen. Met grote spelers worden bedrijven zoals Facebook, Google, Instagram, LinkedIn, \dots bedoeld. Op deze manier kunnen deze bedrijven de gegevens die ze zelf bijhouden opvragen en controleren. Hier zijn echter enkele problemen mee. De verschillende grote bedrijven houden allemaal gegevens bij die hoogst waarschijnlijk zeer gelijkaardig is. Dit betekent dat er zeer veel duplicate data bijgehouden wordt. Daarnaast is het ook niet zo duidelijk wat er exact bijgehouden wordt. Naast algemene gegevens zoals geboortedatum, naam en voornaam, \dots worden ook zaken zoals vrienden bijgehouden. Deze ``vriendenlijsten'' zijn verschillend bij de verschillende bedrijven. Daarnaast worden aankoopgegevens bijgehouden, om gepersonaliseerde advertenties te tonen. Dit roept dan weer vraagtekens op rond privacy. Zelfs al is het toegelaten, worden er gegarandeerd gegevens bijgehouden die liever niet vrijgegeven worden. Een oplossing voor deze problemen is de decentralisatie, waarbij de gebruiker zelf controle heeft over zijn gegevens. De bedrijven moeten deze gegevens dan opvragen bij de gebruikers zelf. 
+
+Deze gegevens worden dan niet langer bijgehouden in echte databanken, maar in andere bronnen die verderop in deze scriptie beschreven worden. Dit betekent dat er een andere manier van opvragen voor deze gegevens nodig is.
+
+\section{Overzicht}
+
+In \chapterref{chap:literatuurstudie} wordt aangehaald wat er reeds bestaat. Hierbij geeft \sectionref{sec:semantic_web} uitleg over het Semantisch Web. Vervolgens leggen \sectionref{sec:linked_data}, \sectionref{sec:rdf} en \sectionref{sec:sparql} de gebruikte technologieën uit, namelijk Linked Data, RDF en SPARQL. \sectionref{sec:comunica} vertelt meer over Comunica. Comunica brengt de (net hiervoor) genoemde technologieën bij elkaar in een implementatie. \sectionref{sec:ogc} vertelt over het OGC. Dit is een organisatie die standaarden voorziet voor het werken met geografische data. Ten slotte beschrijft \sectionref{sec:geosparql} een specifieke standaard van het OGC, namelijk GeoSPARQL. Hierbij is \sectionref{sec:geosparql} zo belangrijk omdat het onderzoek (zie \sectionref{sec:onderzoeksvraag}) een implementatie van GeoSPARQL vereist. Zo zal \sectionref{sec:geosparql} uitleggen waar rekening mee moet gehouden worden bij het maken van de implementatie.
+
+In \chapterref{chap:implementatie} wordt de eigen implementatie uitgelegd van GeoSPARQL. Zo legt \sectionref{sec:impl_comunica} uit waarom Comunica zo een belangrijke rol speelt bij deze implementatie. Dit wordt gevolgd door \sectionref{sec:datastructuur}, \sectionref{sec:topologische_functies}, \sectionref{sec:niet_topologische_functies} en \sectionref{sec:projecties} die beschrijven welke keuzes gemaakt zijn voor de verschillende aspecten van de implementatie. Daarnaast beschrijft \sectionref{sec:testomgeving} hoe de testomgeving is gemaakt. Deze omgeving wordt in \chapterref{chap:interfaces} gebruikt voor het onderzoek. Ten slotte wordt het voorgaande nogmaals overloopt in \sectionref{sec:impl_overzicht} om te verduidelijken hoe alles exact samenwerkt. Hierbij wordt ook aangehaald welke verbeteringen nog gemaakt dienen te worden in toekomstig werk.
+
+Vervolgens wordt in \chapterref{chap:interfaces} beschreven hoe het effectieve testen van de onderzoeksvraag gebeurt. In \sectionref{sec:testset} wordt uitlegd welke use-case en dataset gebruikt zijn voor het testen van dit onderzoek. Vervolgens wordt in \sectionref{sec:data-dump}, \sectionref{sec:impl_tpf_interface} en \sectionref{sec:impl_sparql_endpoint} gecontroleerd of de hypothesen (zie \sectionref{sec:onderzoeksvraag}) voldaan zijn.
+
+Ten slotte zal in \chapterref{chap:conclusie} een uiteindelijke conclusie getrokken worden. Hier worden geen nieuwe besluiten meer gemaakt, maar wordt een samenvoeging gedaan van de bekomen resultaten.
+
+
+\section{Probleemstelling en doel}
+\label{sec:probleemstelling_doel}
+Het behalen van een Semantisch Web staat nog in zijn kinderschoenen. Hier wordt al jaren aan gewerkt en hoewel er al veel vooruitgang geboekt is vereist het nog steeds zeer veel werk. Het ophalen van gegevens op het internet is reeds mogelijk door \textit{query engines} zoals onder andere Comunica en Virtuoso. Er is echter een veel beperkter aanbod aan mogelijkheden om met geografische informatie te werken. De bestaande implementaties van GeoSPARQL zijn incompleet of niet voldoende meegaand met de regels die opgesteld zijn door het OGC. 
+
+Bovendien is het met huidige implementaties niet mogelijk om te queryen over verschillende bronnen of bronnen van verschillende types. Een simpel voorbeeld dat dit probleem verduidelijkt is het volgende. Stel dat de Belgische overheid een dataset heeft die de volledige grens van België beschrijft (aan de hand van OGC standaarden). Daarnaast bevat deze dataset een soortgelijke beschrijving van de gewesten, provincies, gemeenten, steden en wegen. Op deze manier zou het mogelijk zijn om op te vragen aan deze dataset welke gemeenten of steden binnen een een bepaalde provincie liggen. Daarnaast zou het mogelijk zijn om te vragen welke steden of wegen op een bepaalde afstand (of interesanter, een kleindere afstand) van een stad liggen. Veronderstel nu dat de Franse, Nederlandse en Duitse overheden een gelijkaardige dataset hebben van hun land. Dan zouden soortgelijke opvragingen in deze dataset gedaan kunnen worden. Het zou echter onmogelijk zijn welke Franse (of Nederlandse of Duitse) steden op een bepaalde afstand van een Belgische stad liggen. 
+
+Dit probleem zou niet voorkomen wanneer de techniek van Comunica uitgebreidt kan worden naar de functionaliteiten van GeoSPARQL. Deze masterproef zal een simpele dataset voorzien die een soortgelijk probleem als hierboven kan simuleren. Hierbij zal gebruik gemaakt worden van Comunica om zo gebruik te maken van de reeds voorziene mogelijkheden om te queryen over heterogene interfaces. 
+
+
+\section{Onderzoeksvraag}
+\label{sec:onderzoeksvraag}
+Zoals beschreven in \sectionref{sec:probleemstelling_doel} zal onderzocht worden in welke mate Comunica uitgebreid kan worden om de GeoSPARQL functionaliteiten te ondersteunen. Aangezien er meerdere bronnen van verschillende types gebruikt kunnen worden moet de filtering zelf op de client-side gebeuren. Dit wordt geformuleerd in een onderzoeksvraag die uiteindelijk in \chapterref{chap:conclusie} beantwoord zal worden. 
+
+\textbf{Onderzoeksvraag} Welke “Linked Data publicatie”-interfaces kunnen uitgebreid worden met GeoSPARQL functionaliteiten door de filtering op de client uit te voeren?
+
+Wanneer Comunica zelfstandig een bestand moet ophalen en vervolgens queryen, is het mogelijk dat dit bestand geografische gegevens bevat. Deze moeten afgehandeld kunnen worden op zo een manier dat topologische (en niet-topologische) relaties berekend kunnen worden. Deze bron bevat zelf geen logica en wordt vervolgens de \textit{baseline}.
+
+\textbf{Hypothese 1} Het is mogelijk om GeoSPARQL queries uit te voeren over ``data dumps'' waarbij de filtering op de client-side gebeurt.
+
+Wanneer de bron een TPF interface is, is er een server die de gegevens aanbiedt. Hierbij is het opnieuw mogelijk dat de dataset geografische informatie bevat. Door het filteren op de server moet het wederom mogelijk zijn om GeoSPARQL opvragingen uit te voeren.
+
+\textbf{Hypothese 2} Het is mogelijk om GeoSPARQL queries uit te voeren over ``TPF interfaces'' door de filtering op de client-side uit te voeren.
+
+Een dataset kan ook vrijgegeven worden aan de hand van een SPARQL endpoint. Comunica heeft de functionaliteit om te queryen naar een SPARQL endpoint. Hierbij is het niet vanzelfsprekend dan GeoSPARQL queries opgevraagd kunnen worden aan een SPARQL endpoint. Dit is echter wel mogelijk door de filtering op de client-side te doen.
+
+\textbf{Hypothese 3} Het uitvoeren van GeoSPARQL queries op een ``SPARQL endpoint'' is niet vanzelfsprekend. Het is echter mogelijk door de filtering op de client-side uit te voeren.
+
+\todo[inline]{misschien hypothese 4 een combinatie van de 3?}
