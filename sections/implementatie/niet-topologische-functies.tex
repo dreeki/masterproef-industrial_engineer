@@ -5,7 +5,7 @@ De niet-topologische functies binnen GeoSPARQL zijn beperkter in hoeveelheid, te
 Voor het maken van deze implementaties is opnieuw gebruik gemaakt van Turf en dankzij de implementatie van sparqlee, die excellent gebruik maakt van het \textit{divide-and-conquer} (= verdeel en heers) programmeer principe, is deze implementatie op bijna identiek dezelfde manier als de topologische functies mogelijk.
 
 \subsection{Beperkingen}
-Aangezien gebruik gemaakt wordt van Turf, moet de manier van Turf gevolgd worden. Hierbij is het enkel mogelijk om de unie of intersectie te berekenen van polygonen. GeoSPARQL beschrijft echter dat deze functies beiden een geometrisch object terug moeten geven die alle punten representeerd van het resultaat van deze functies. Dit impliceerd dat het ook mogelijk moet zijn om deze functies toe te passen op punten en lijnen. Dit zou zelfs mogelijk moeten zijn om de combinatie van punten, lijnen en polygonen.
+Aangezien gebruik gemaakt wordt van Turf, moet de manier van Turf gevolgd worden. Hierbij is het enkel mogelijk om de unie of intersectie te berekenen van polygonen. GeoSPARQL beschrijft echter dat deze functies beiden een geometrisch object terug moeten geven die alle punten representeert van het resultaat van deze functies. Dit impliceert dat het ook mogelijk moet zijn om deze functies toe te passen op punten en lijnen. Dit zou zelfs mogelijk moeten zijn om de combinatie van punten, lijnen en polygonen.
 
 \begin{figure}
     \centering
@@ -25,4 +25,4 @@ Aangezien gebruik gemaakt wordt van Turf, moet de manier van Turf gevolgd worden
     \caption{Problematiek union.}
 \end{figure}
 
-Dit laatste is echter niet mogelijk met de huidige implementatie waar gebruik gemaakt wordt van ``Point'', ``MultiPoint'', ``LineString'', ``MultiLineString'', ``Polygon'' en ``MultiPolygon''. In \figureref{fig:union_example1} is een voorbeeld te zien van twee vormen waarvan de unie genomen wordt. In \figureref{fig:union_example2} wordt dan weer aangetoond dat het resultaat van de unie van een ``LineString'' en een ``Polygon'' niet te representeren valt in één van de zes eerder genoemde vormen. Hiervoor zou gewerkt moeten worden met een soort ``GeometryColletion''.
+Dit laatste is echter niet mogelijk met de huidige implementatie waar gebruik gemaakt wordt van ``Point'', ``MultiPoint'', ``LineString'', ``MultiLineString'', ``Polygon'' en ``MultiPolygon''. In \figureref{fig:union_example1} is een voorbeeld te zien van twee vormen waarvan de unie (= de vorm die alle punten van beide figuren samen bevat) genomen wordt. In \figureref{fig:union_example2} wordt dan weer aangetoond dat het resultaat van de unie van een ``LineString'' en een ``Polygon'' niet te representeren valt in één van de zes eerder genoemde vormen. Hiervoor zou gewerkt moeten worden met een soort ``GeometryColletion''.

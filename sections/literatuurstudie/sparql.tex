@@ -1,7 +1,7 @@
 \section{SPARQL}
 \label{sec:sparql}
 
-SPARQL komt oorspronkelijk van ``\textbf{S}imple \textbf{P}rotocol \textbf{A}nd \textbf{R}DF \textbf{Q}uery \textbf{L}anguage'', maar aangezien het te uitgebreidt werd om nog ``\textit{simple}'' te noemen, is het verandert naar de recursieve acroniem ``\textbf{S}PARQL \textbf{P}rotocol \textbf{A}nd \textbf{R}DF \textbf{Q}uery \textbf{L}anguage'' \cite{sparql2011acronym}. Dit betekent letterlijk dat SPARQL een zoektaal is voor de opzoeking van RDF gebaseerde gegevens. Hierdoor is het ook zeer makkelijk om meerdere bronnen met RDF gegevens te combineren. Voor het gebruiksgemak te verhogen is SPARQL zeer gelijkaardig aan het meer bekende SQL. Om de vergelijking met SQL even door te trekken, kan RDF data beschouwd worden als een soort tabel met drie kolommen: de \textit{subject} kolom, de \textit{predicate} kolom en de \textit{object} kolom. Hierbij zou het \textit{subject} analoog zijn aan een entiteit bij SQL, het \textit{predicate} zou dan weer staan voor welk veld (dus de kolom in de SQL tabel) een waarde heeft en het \textit{object} zou de effectieve waarde van dat veld zijn \cite{sparql2013querylanguage}. 
+SPARQL komt oorspronkelijk van ``\textbf{S}imple \textbf{P}rotocol \textbf{A}nd \textbf{R}DF \textbf{Q}uery \textbf{L}anguage'', maar aangezien het te uitgebreid werd om nog ``\textit{simple}'' te noemen, is het veranderd naar het recursieve acroniem ``\textbf{S}PARQL \textbf{P}rotocol \textbf{A}nd \textbf{R}DF \textbf{Q}uery \textbf{L}anguage'' \cite{sparql2011acronym}. Dit betekent letterlijk dat SPARQL een zoektaal is voor de opzoeking van RDF gebaseerde gegevens. Hierdoor is het ook zeer makkelijk om meerdere bronnen met RDF gegevens te combineren. Voor het gebruiksgemak te verhogen is SPARQL zeer gelijkaardig aan het meer bekende SQL. Om de vergelijking met SQL even door te trekken, kan RDF-data beschouwd worden als een soort tabel met drie kolommen: de \textit{subject} kolom, de \textit{predicate} kolom en de \textit{object} kolom. Hierbij zou het \textit{subject} analoog zijn aan een entiteit bij SQL. Het \textit{predicate} zou dan opnieuw staan voor welk veld (dus de kolom in de SQL tabel) een waarde heeft en het \textit{object} zou de effectieve waarde van dat veld zijn \cite{sparql2013querylanguage}. 
 
 Er zijn echter ook belangrijke verschillen met SQL. Zo is de waarde van het \textit{object} vaak geïmpliceerd door de \textit{predicate} waarde. Daarnaast kunnen er ook meerdere (verschillende) \textit{object} waarden zijn voor hetzelfde \textit{predicate}, om zo een lijst te bekomen \cite{sparql2013querylanguage}.
 
@@ -9,7 +9,7 @@ Bovendien is SPARQL de \acrshort{w3c} aanbeveling als RDF query taal. De traditi
 
 \subsection{SPARQL basisvoorbeelden}
 
-Aangezien SPARQL gebruikt wordt om RDF gebaseerde gegevens op te vragen, zullen de \textit{statements} in de query zelf ook een RDF vorm hebben. Deze queries zijn syntactisch zeer gelijkend op het Turtle formaat. Zo is de simpelste vorm van een SPARQL query te zien in \listingref{listing:basic_sparql_query}. Deze zal letterlijk alles triples opvragen en deze weergeven. 
+Aangezien SPARQL gebruikt wordt om RDF gebaseerde gegevens op te vragen, zullen de \textit{statements} in de query zelf ook een RDF vorm hebben. Deze queries zijn syntactisch zeer gelijkend op het Turtle formaat. Zo is de simpelste vorm van een SPARQL query te zien in \listingref{listing:basic_sparql_query}. Deze zal letterlijk alle triples opvragen en deze weergeven. 
 
 \begin{listing}[ht]
     \begin{minted}{sparql}
@@ -20,7 +20,7 @@ Aangezien SPARQL gebruikt wordt om RDF gebaseerde gegevens op te vragen, zullen 
     \label{listing:basic_sparql_query}
 \end{listing}
 
-Hierbij zijn er drie variabelen (namelijk ``?s'', ``?p'' en ``?o''), die vervolgens weergegeven worden. Elk van deze variabelen kan ook aangepast worden naar een literal of een URI, om zo de query meer zinvol te maken. Zo is \listingref{listing:find_people_sparql_query} een meer zinvol voorbeeld. Hierin zal gekeken worden naar alle personen in de dataset (via foaf:Person). Vervolgens zal de naam en het email-adres opgehaald worden en in een variabele geplaatst worden, om zo ten slotte deze naam en email te laten zien. Alles bij elkaar zal \listingref{listing:find_people_sparql_query} van alle personen in de dataset de naam en het email-adres laten zien.
+Er zijn drie variabelen (namelijk ``?s'', ``?p'' en ``?o''), die achtereenvolgens weergegeven worden. Elk van deze variabelen kan ook aangepast worden naar een literal of een URI, om zo de query meer zinvol te maken. Zo is \listingref{listing:find_people_sparql_query} een meer zinvol voorbeeld. Hierin zal gekeken worden naar alle personen in de dataset (via foaf:Person). Vervolgens zal de naam en het emailadres opgehaald worden en in een variabele geplaatst worden, om zo ten slotte deze naam en email te laten zien. Alles bij elkaar zal \listingref{listing:find_people_sparql_query} van alle personen in de dataset de naam en het emailadres laten zien.
 
 \begin{listing}[ht]
     \begin{minted}[xleftmargin=\parindent,linenos]{sparql}
@@ -36,29 +36,37 @@ Hierbij zijn er drie variabelen (namelijk ``?s'', ``?p'' en ``?o''), die vervolg
     \label{listing:find_people_sparql_query}
 \end{listing}
 
-Het voorbeeld uit \listingref{listing:find_people_sparql_query} kan uiteraard nog ingekort worden, zo kan ``?person'' nog verwijderd worden op lijn 5 en lijn 6, door op lijn 4 en lijn 5 de ``.'' te veranderen door een ``;''. Daarnaast heeft SPARQL ook \textit{blank nodes} (voorgesteld door ``[]''). Deze doen zich voor als variabelen, maar zijn het eigenlijk niet. Op deze manier kan zelfs de ``?person'' van lijn 4 weggelaten worden, door deze lijn tussen vierkante haken te plaatsen. Dit is mogelijk omdat de inhoud van ``?person'' niet getoond wordt, dus is deze niet echt nodig. Bij deze laatste vorm kan er bij de ``SELECT'' statement ook een ``*'' geplaatst worden, omdat er maar twee variabelen meer zijn. Zo krijgen we toch nog steeds de verwachte uitkomst van de query. Dit gaat echter de leesbaarheid van het geheel niet ten goede, waardoor er meestal toch gekozen wordt voor de lange versie \cite{sparql2013querylanguage}.
+Het voorbeeld uit \listingref{listing:find_people_sparql_query} kan uiteraard nog ingekort worden, zo kan ``?person'' nog verwijderd worden op lijn 5 en lijn 6, door op lijn 4 en lijn 5 de ``.'' te veranderen door een ``;''. Daarnaast heeft SPARQL ook \textit{blank nodes} (voorgesteld door ``[]''). Deze doen zich voor als variabelen, maar zijn het eigenlijk niet. Op deze manier kan zelfs de ``?person'' van lijn 4 weggelaten worden, door deze lijn tussen vierkante haken te plaatsen. Dit is mogelijk omdat de inhoud van ``?person'' niet getoond wordt, dus is deze niet echt nodig. Bij deze laatste vorm kan er bij de ``SELECT'' statement ook een ``*'' geplaatst worden, omdat er maar twee variabelen meer zijn. Zo krijgen we toch nog steeds de verwachte uitkomst van de query. Dit komt echter de leesbaarheid van het geheel niet ten goede, waardoor er meestal toch gekozen wordt voor de lange versie \cite{sparql2013querylanguage}.
 
 \subsection{SPARQL functies}
 \subsubsection{Functies}
-Verder ondersteunt SPARQL verschillende functies en filter functies, om zo onder andere verder onderscheid te maken tussen welke lijnen al dan niet tot het resultaat mogen behoren. Deze functies kunnen bijvoorbeeld de waarde van een variabele veranderen of twee variabelen samenvoegen tot een nieuwe variabele. De filter functies kunnen dan weer bijvoorbeeld kijken naar de waarde of deze overeenkomt met een regex. Om uitbreidingen op SPARQL (zoals GeoSPARQL, besproken in \sectionref{sec:geosparql}) aan te brengen, zal het meeste werk zich bevinden in het aanbrengen van nieuwe functies \cite{sparql2013querylanguage}.
+Verder ondersteunt SPARQL verschillende functies, waaronder filterfuncties, om zo onder andere verder onderscheid te maken tussen welke lijnen al dan niet tot het resultaat mogen behoren. Deze functies kunnen bijvoorbeeld de waarde van een variabele veranderen of twee variabelen samenvoegen tot een nieuwe variabele. De filterfuncties kunnen dan weer bijvoorbeeld kijken naar de waarde of deze overeenkomt met een regex. Om uitbreidingen op SPARQL (zoals GeoSPARQL, besproken in \sectionref{sec:geosparql}) aan te brengen, zal het meeste werk zijn om nieuwe functies aan te brengen \cite{sparql2013querylanguage}.
 
 \subsubsection{Matching alternatieven}
-Naast filter functies zijn er ook verschillende alternatieven, zoals het gebruik van onder andere ``UNION'' (zeker niet te verwarren met de union functie van GeoSPARQL, besproken in \sectionref{sec:geosparql}) \cite{sparql2013querylanguage}.
+Naast filterfuncties zijn er ook verschillende alternatieven, zoals het gebruik van onder andere ``UNION'' (zeker niet te verwarren met de union functie van GeoSPARQL, besproken in \sectionref{sec:geosparql}) \cite{sparql2013querylanguage}.
 
 \subsubsection{Negaties}
-In SPARQL is het zelfs mogelijk om negaties te gebruiken (wat nog steeds lijkt op SQL), zoals een ``FILTER NOT EXISTS'' of ``MINUS''. Er is echter wel een zeer groot verschil tussen deze twee opties. Hierbij zal ``FILTER NOT EXISTS'' kijken of de waarden gelijk zijn, zodat deze verwijderd kunnen worden. De ``MINUS'' optie zal echter kijken of er een \textit{binding} (= gelijke variabele) aanwezig is tussen de twee gescheiden delen. Indien niet zal ``MINUS'' niets verwijderen \cite{sparql2013querylanguage}.
+In SPARQL is het zelfs mogelijk om negaties te gebruiken (wat nog steeds lijkt op SQL), zoals een ``FILTER NOT EXISTS'' of ``MINUS''. Er is echter wel een zeer groot verschil tussen deze twee opties. Hierbij zal ``FILTER NOT EXISTS'' kijken of de waarden gelijk zijn, zodat deze verwijderd kunnen worden. De ``MINUS'' optie zal dan weer kijken of er een \textit{binding} (= gelijke variabele) aanwezig is tussen de twee gescheiden delen. Indien niet zal ``MINUS'' niets verwijderen \cite{sparql2013querylanguage}.
 
 \subsection{SPARQL aggregaties}
-Net zoals SQL heeft SPARQL ook de mogelijkheid tot het aggregeren van van meerdere rijen. Hiervoor wordt gebruik gemaakt van de syntax ``GROUP BY''. De mogelijke aggregaatsfuncties zijn dan onder andere ``COUNT'', ``SUM'', ``MIN'', ``MAX'' en ``AVG'' \cite{sparql2013querylanguage}.
+Net zoals SQL heeft SPARQL ook de mogelijkheid om meerdere rijen te aggregeren. Hiervoor wordt gebruik gemaakt van de syntax ``GROUP BY''. De mogelijke aggregaatsfuncties zijn dan onder andere ``COUNT'', ``SUM'', ``MIN'', ``MAX'' en ``AVG'' \cite{sparql2013querylanguage}.
 
 \subsection{SPARQL modifiers}
-SPARQL voorziet nog vele functionaliteiten, zoals ``ORDER BY'' voor het orderen van de uitkomst, ``DISTINCT'' voor unieke resultaten te bekomen en ``LIMIT'' om aan te geven de hoeveel eerste rijen teruggegeven mogen worden \cite{sparql2013querylanguage}.
-
+SPARQL voorziet nog vele functionaliteiten. Enkele voorbeelden zijn \cite{sparql2013querylanguage}:
+\begin{itemize}
+    \item ``ORDER BY'' voor het orderen van de uitkomst.
+    \item ``DISTINCT'' om unieke resultaten te bekomen.
+    \item ``LIMIT'' om aan te geven de hoeveel eerste rijen teruggegeven mogen worden.
+\end{itemize}
 
 \subsection{SPARQL query forms}
-SPARQL heeft vier verschillende query vormen. Deze vormen zullen beslissen hoe het resultaat van een query eruit ziet. De eerste vorm is ``SELECT''. Deze wordt gebruikt om alle of een deel van de variabelen uit de query weer te geven. De tweede vorm is ``CONSTRUCT''. Deze vorm dient dan weer voor het construeren van een geldige RDF graaf. De derde vorm is ``ASK''. Dit is de meest eenvoudige van de vier en wordt gebruikt voor het controleren of er een resultaat is voor een bepaalde query. Deze geeft dus een \textit{boolean} waarde terug. De laatste vorm is ``DESCRIBE''. Deze geeft een RDF graaf terug die de gevonden \textit{resources} beschrijft \cite{sparql2013querylanguage}.
-
-\todo{entailment?}
+SPARQL heeft vier verschillende query vormen. Deze vormen zullen beslissen hoe het resultaat van een query eruit ziet. deze vormen zijn \cite{sparql2013querylanguage}:
+\begin{itemize}
+    \item ``SELECT'' wordt gebruikt om alle of een deel van de variabelen uit de query weer te geven.
+    \item ``CONSTRUCT'' dient dan weer om een geldige RDF-graaf te construeren.
+    \item ``ASK'' is de meest eenvoudige vorm en wordt gebruikt om te controleren of er een resultaat is voor een bepaalde query. Deze geeft dus een \textit{boolean} waarde terug.
+    \item ``DESCRIBE'' geeft een RDF-graaf terug die de gevonden \textit{resources} beschrijft .
+\end{itemize}
 
 \subsection{Conclusie}
-SPARQL is een zeer uitgebreide query-taal. Om een correcte implementatie van SPARQL te maken moet er enorm veel voorzien worden. Hierboven zijn slechts een (relatief klein) deel van de functionaliteiten beschreven om een beeld te schetsen van de mogelijkheden met SPARQL. Ook de beschreven delen zijn slechts zeer beperkt uitgelegd, om een minimaal beeld te schetsen van de omvang. Het belang van de werking van SPARQL is dat GeoSPARQL een uitbreiding hierop is, dus is er een correcte implementatie nodig van SPARQL alvorens GeoSPARQL geïmplementeerd kan worden. Voor de volledige en uitgebreide uitleg van SPARQL te lezen wordt best doorverwezen naar de officiële documentatie.
+SPARQL is een query-taal die gebruikt wordt om gegevens op te halen van het Web. Om een correcte implementatie van SPARQL te maken moet meerdere functionaliteiten voorzien worden. Hierboven zijn slechts een (relatief klein) deel van de functionaliteiten beschreven om een beeld te schetsen van de mogelijkheden met SPARQL. Ook de beschreven delen zijn slechts zeer beperkt uitgelegd, om een minimaal beeld te schetsen van de omvang. Het belang van de werking van SPARQL is dat GeoSPARQL een uitbreiding hierop is, dus is er een correcte implementatie nodig van SPARQL alvorens GeoSPARQL geïmplementeerd kan worden. Voor de volledige en uitgebreide uitleg van SPARQL te lezen wordt best doorverwezen naar de officiële documentatie\footnote{https://www.w3.org/TR/sparql11-query/}.
