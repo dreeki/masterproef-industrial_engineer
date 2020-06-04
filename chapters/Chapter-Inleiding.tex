@@ -3,7 +3,7 @@ Het Web is origineel gemaakt om begrepen te worden door mensen. Dit wordt verwez
 
 Naast het automatiseren zijn er nog andere problemen met het Web. Zo hebben de grote spelers alle gegevens van de mensen in handen. Met grote spelers worden bedrijven zoals Facebook, Google, Instagram, LinkedIn, \dots bedoeld. Op deze manier kunnen deze bedrijven de gegevens die ze zelf bijhouden opvragen en controleren. Hier zijn echter enkele problemen mee. De verschillende grote bedrijven houden allemaal gegevens bij die hoogst waarschijnlijk zeer gelijkaardig is. Dit betekent dat er zeer veel duplicate data bijgehouden wordt. Daarnaast is het ook niet zo duidelijk wat er exact bijgehouden wordt. Naast algemene gegevens zoals geboortedatum, naam en voornaam, \dots worden ook zaken zoals vrienden bijgehouden. Deze ``vriendenlijsten'' zijn verschillend bij de verschillende bedrijven. Daarnaast worden aankoopgegevens bijgehouden, om gepersonaliseerde advertenties te tonen. Dit roept dan weer vraagtekens op rond privacy. Zelfs al is het toegelaten, worden er gegarandeerd gegevens bijgehouden die liever niet vrijgegeven worden. Een oplossing voor deze problemen is de decentralisatie, waarbij de gebruiker zelf controle heeft over zijn gegevens. De bedrijven moeten deze gegevens dan opvragen bij de gebruikers zelf. 
 
-Deze gegevens worden dan niet langer bijgehouden in echte databanken, maar in andere bronnen die verderop in deze scriptie beschreven worden. Dit betekent dat er een andere manier van opvragen voor deze gegevens nodig is.
+Deze gegevens worden dan niet langer bijgehouden in echte databanken, maar in andere bronnen die verderop in deze masterproef beschreven worden. Dit betekent dat er een andere manier van opvragen voor deze gegevens nodig is.
 
 \section{Overzicht}
 
@@ -13,7 +13,7 @@ In \chapterref{chap:implementatie} wordt de eigen implementatie uitgelegd van Ge
 
 Vervolgens wordt in \chapterref{chap:interfaces} beschreven hoe het effectieve testen van de onderzoeksvraag gebeurt. In \sectionref{sec:testset} wordt uitlegd welke use-case en dataset gebruikt zijn voor het testen van dit onderzoek. Vervolgens wordt in \sectionref{sec:data-dump}, \sectionref{sec:impl_tpf_interface} en \sectionref{sec:impl_sparql_endpoint} gecontroleerd of de hypothesen (zie \sectionref{sec:onderzoeksvraag}) voldaan zijn.
 
-Ten slotte zal in \chapterref{chap:conclusie} een uiteindelijke conclusie getrokken worden. Hier worden geen nieuwe besluiten meer gemaakt, maar wordt een samenvoeging gedaan van de bekomen resultaten.
+Ten slotte zal in \chapterref{chap:conclusie} een uiteindelijke conclusie getrokken worden. Hier wordt beantwoord op de vraag welke ``Linked data publicatie''-interfaces uitgebreid kunnen worden met GeoSPARQL-functionaliteiten door de filtering op de client uit te voeren.
 
 
 \section{Probleemstelling en doel}
@@ -29,7 +29,7 @@ Dit probleem zou niet voorkomen wanneer de techniek van Comunica uitgebreidt kan
 \label{sec:onderzoeksvraag}
 Zoals beschreven in \sectionref{sec:probleemstelling_doel} zal onderzocht worden in welke mate Comunica uitgebreid kan worden om de GeoSPARQL functionaliteiten te ondersteunen. Aangezien er meerdere bronnen van verschillende types gebruikt kunnen worden moet de filtering zelf op de client-side gebeuren. Dit wordt geformuleerd in een onderzoeksvraag die uiteindelijk in \chapterref{chap:conclusie} beantwoord zal worden. 
 
-\textbf{Onderzoeksvraag} Welke “Linked Data publicatie”-interfaces kunnen uitgebreid worden met GeoSPARQL functionaliteiten door de filtering op de client uit te voeren?
+\textbf{Onderzoeksvraag} Welke “Linked Data publicatie”-interfaces kunnen uitgebreid worden met GeoSPARQL-functionaliteiten door de filtering op de client uit te voeren?
 
 Wanneer Comunica zelfstandig een bestand moet ophalen en vervolgens queryen, is het mogelijk dat dit bestand geografische gegevens bevat. Deze moeten afgehandeld kunnen worden op zo een manier dat topologische (en niet-topologische) relaties berekend kunnen worden. Deze bron bevat zelf geen logica en wordt vervolgens de \textit{baseline}.
 
