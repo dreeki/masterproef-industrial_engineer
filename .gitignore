@@ -235,7 +235,7 @@ TSWLatexianTemp*
 
 
 # PDF files can be generated using the build command
-/*.pdf
+# /*.pdf
 
 # JabRef rubbish is not needed
 *.bib.bak
