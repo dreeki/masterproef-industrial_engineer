@@ -1,7 +1,7 @@
 \section{GeoSPARQL}
 \label{sec:geosparql}
 
-Zoals eerder vermeld is GeoSPARQL één van de vele OGC standaarden. Specifieker is GeoSPARQL uitermate geschikt voor het uitvoeren van \acrshort{gis} gueries, maar dit is zeker niet de enige mogelijkheid. Zoals eerder vermeld brengt GeoSPARQL een vocabulair voor de representatie van geospatiale gegevens, gebruik makend van RDF en is GeoSPARQL een uitbreiding op de SPARQL query taal. Het doel van GeoSPARQL is dan ook om geospatiale gegevens te verwerken. Voor het bekomen van een correcte implementatie van GeoSPARQL, zijn er normaliter meerdere voorwaarden waaraan de implementatie moet voldoen. De meeste van deze vereisten maken gebruik van de ``geo'', ``geof'' of ``geor'' ontologie \cite{ogcdocs}.
+Zoals eerder vermeld is GeoSPARQL één van de vele OGC standaarden. Specifieker is GeoSPARQL uitermate geschikt voor het uitvoeren van \acrshort{gis} queries, maar dit is zeker niet de enige mogelijkheid. Zoals eerder vermeld brengt GeoSPARQL een vocabulair voor de representatie van geospatiale gegevens, gebruik makend van RDF en is GeoSPARQL een uitbreiding op de SPARQL query taal. Het doel van GeoSPARQL is dan ook om geospatiale gegevens te verwerken. Voor het bekomen van een correcte implementatie van GeoSPARQL, zijn er normaliter meerdere voorwaarden waaraan de implementatie moet voldoen. De meeste van deze vereisten maken gebruik van de ``geo'', ``geof'' of ``geor'' ontologie \cite{ogcdocs}.
 
 \subsection{Vereisten}
 De vereisten zijn opgelijst in de officiële documentatie. Een samenvatting van het geheel is te vinden hieronder \cite{ogcdocs}. 
@@ -52,7 +52,7 @@ Om topologische relaties te kunnen beschrijven, wordt er gebruik gemaakt van dri
 DE-9IM staat voor \textit{Dimensionally Extended Nine-Intersection Model}. Dit model kan afgebeeld worden als een 3x3 matrix, waarbij (in deze volgorde) de \textit{interior}, \textit{boundary} en \textit{exterior} van het ene spatiale object vergeleken wordt met deze van het andere spatiale object. Deze matrix geeft de dimensies van de intersectie van deze objecten weer. De betekenis van \textit{interior}, \textit{boundary} en \textit{exterior} voor de verschillende soorten spatiale objecten is verduidelijkt in \figureref{fig:de-9im}. De volledige 3x3 matrix voor de objecten a en b is van de volgende vorm \cite{shen2018classification}:
 
 \begin{equation*}
-    DE9IM(a,b) = 
+    DE-9IM(a,b) = 
     \begin{bmatrix}
     dim(I(a)\cap I(b)) & dim(I(a)\cap B(b)) & dim(I(a)\cap E(b))\\
     dim(B(a)\cap I(b)) & dim(B(a)\cap B(b)) & dim(B(a)\cap E(b))\\
