@@ -1,7 +1,8 @@
 # Masters Thesis: Client-side evaluatie van GeoSPARQL opvragingen over heterogene gegevensbronnen
 
-<!-- [Extended abstract](https://github.com/Bertware/masterthesis/blob/master/abstract.pdf) (EN) -->
-<!-- [Masters thesis](https://github.com/Bertware/masterthesis/blob/master/masterproef%20Bert%20Marcelis.pdf) (NL) -->
+[Extended abstract](https://github.com/dreeki/masterproef/blob/master/abstractNL.pdf) (NL)
+[Extended abstract](https://github.com/dreeki/masterproef/blob/master/abstractEN.pdf) (EN)
+[Masters thesis](https://github.com/dreeki/masterproef/blob/master/masterproef%20Andreas%20De%20Witte.pdf) (NL)
 
 ### **abstract (EN)**
 On the Web as it's currently known, users can easily understand pages of websites. This is not the case for computers, they need to do a lot of effort to substract both meaning and context from sentences. The Web, as it is today, is not build to be interpreted by machines. Thanks to the Semantic Web, which is an extension to the current Web, it is possible for machines to understand the pages of websites.
