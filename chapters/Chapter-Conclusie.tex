@@ -1,3 +1,9 @@
+\begin{savequote}[0.55\linewidth]
+	``Dream big and dare to fail.''
+	\qauthor{\textasciitilde 
+    Norman Vaughan}
+\end{savequote}
+
 \chapter{Conclusie}
 \label{chap:conclusie}
 In dit hoofdstuk worden de resultaten, besproken in \chapterref{chap:interfaces}, geïnterpreteerd. Er wordt een antwoord geformuleerd op de vragen uit \sectionref{sec:onderzoeksvraag}.
@@ -8,7 +14,7 @@ De masterproef brengt een oplossing om de ``Linked Data publicatie''-interfaces 
 
 De vraag is hoe deze opvraging kan uitgebreid worden met GeoSPARQL-functionaliteiten. Hiervoor wordt gebruik gemaakt van de al bestaande implementatie van Comunica. Door Comunica uit te breiden met deze GeoSPARQL-functionaliteiten wordt gepoogd om op dezelfde manier te kunnen werken als voordien, maar ditmaal met GeoSPARQL-functionaliteiten. Specifiek hierbij worden de data opgehaald en gefilterd op de client zelf (zoals besproken in \chapterref{chap:interfaces}).
 
-De meest voorkomende ``Linked Data publicatie''-interfaces voor het gebruik van geospatiale data zijn ``data dumps'', ``TPF interfaces'' en ``SPARQL endpoints''.
+De meest voorkomende ``Linked Data publicatie''-interfaces voor het gebruik van geospatiale data zijn ``data dumps'', ``\acrshort{tpf} interfaces'' en ``SPARQL endpoints''.
 
 \textbf{Hypothese 1: Het is mogelijk om GeoSPARQL queries uit te voeren over ``data dumps'' waarbij de filtering op de client-side gebeurt.}
 
@@ -16,9 +22,9 @@ Bij een ``data dump'' worden de data volledig gedownload op de client. Hier zal 
 
 Hieruit volgt dat Hypothese 1 correct is.
 
-\textbf{Hypothese 2: Het is mogelijk om GeoSPARQL queries uit te voeren over ``TPF interfaces'' door de filtering op de client-side uit te voeren.}
+\textbf{Hypothese 2: Het is mogelijk om GeoSPARQL queries uit te voeren over ``\acrshort{tpf} interfaces'' door de filtering op de client-side uit te voeren.}
 
-De ``TPF interface'' is een server die een dataset bevat. Deze server bevat functionaliteiten om te kunnen antwoorden op vragen naar een \textit{triple pattern fragment}. Zo wordt de volledige query opgesplitst, zodat de ``TPF interface'' het kleinst mogelijke deel van de dataset (dat alle vereiste data bevat) kan terug geven. Hierbij zal de client wederom de resultaten joinen om hierop te kunnen filteren zodat het correcte resultaat bekomen kan worden.
+De ``\acrshort{tpf} interface'' is een server die een dataset bevat. Deze server bevat functionaliteiten om te kunnen antwoorden op vragen naar een \textit{triple pattern fragment}. Zo wordt de volledige query opgesplitst, zodat de ``\acrshort{tpf} interface'' het kleinst mogelijke deel van de dataset (dat alle vereiste data bevat) kan terug geven. Hierbij zal de client wederom de resultaten joinen om hierop te kunnen filteren zodat het correcte resultaat bekomen kan worden.
 
 Hieruit volgt dat ook Hypothese 2 correct is.
 
@@ -41,4 +47,4 @@ In deze masterproef is een implementatie gemaakt van GeoSPARQL. Zoals besproken 
 
 Vervolgens werd deze implementatie toegepast in \chapterref{chap:interfaces}. Hierbij werd getest of de verschillende interfaces uitgebreid konden worden met GeoSPARQL-functionaliteiten. In dit hoofdstuk wordt beschreven hoe het geheel in zijn werk gaat. Aan de hand van deze beschrijving wordt nogmaals duidelijk waarom het filteren op de client belangrijk is. 
 
-In \chapterref{chap:conclusie} worden deze resultaten opnieuw geïnterpreteerd. Zo kan een concreet antwoord gevormd worden op de hypotheses die gesteld zijn in \sectionref{sec:onderzoeksvraag}. Tot slot kan geconcludeerd worden dat deze hypotheses correct zijn. Dit betekent dat zowel ``data dumps'', als ``TPF interfaces'', als ``SPARQL endpoints'' uitgebreid kunnen worden met GeoSPARQL-functionaliteiten door de filtering op de client uit te voeren.
+In \chapterref{chap:conclusie} worden deze resultaten opnieuw geïnterpreteerd. Zo kan een concreet antwoord gevormd worden op de hypotheses die gesteld zijn in \sectionref{sec:onderzoeksvraag}. Tot slot kan geconcludeerd worden dat deze hypotheses correct zijn. Dit betekent dat zowel ``data dumps'', als ``\acrshort{tpf} interfaces'', als ``SPARQL endpoints'' uitgebreid kunnen worden met GeoSPARQL-functionaliteiten door de filtering op de client uit te voeren.

@@ -28,7 +28,7 @@ De eerste \textit{query} zoekt naar alle provincies die binnen Vlaanderen liggen
             FILTER (geof:sfContains(?aWKT, ?fWKT))
         }
     \end{minted}
-    \caption{Find all the provinces in Flanders.}
+    \caption{Query om alle provincies in Vlaanderen te vinden.}
     \label{listing:find_provinces_flanders}
 \end{listing}
 
@@ -47,7 +47,7 @@ De tweede \textit{query} is zeer gelijkaardig aan de eerste, maar hier is één 
             FILTER (geof:sfContains(?aWKT, ?fWKT) && !sameterm(?aWKT, ?fWKT))
         }
     \end{minted}
-    \caption{Find everything that's geospatially inside Flanders.}
+    \caption{Query om alles te vinden dat geospatiaal in Vlaanderen ligt.}
     \label{listing:find_everything_flanders}
 \end{listing}
 
@@ -73,7 +73,7 @@ De derde query gaat dan weer over het vinden van de wegen en provincies die binn
             FILTER (geof:sfContains(?aWKT, ?fWKT))
         }
     \end{minted}
-    \caption{Find all the provinces and roads in Belgium.}
+    \caption{Query om alles provincies en wegen in België te vinden.}
     \label{listing:find_provinces_roads_belgium}
 \end{listing}
 
@@ -93,7 +93,7 @@ Bij de vierde query worden alle wegen die door Oost-Vlaanderen gaan opgezocht. D
             FILTER (geof:sfIntersects(?aWKT, ?fWKT))
         }
     \end{minted}
-    \caption{Find all the roads that pass through East-Flanders.}
+    \caption{Query om alle wegen te vinden die door Oost-Vlaanderen lopen.}
     \label{listing:find_roads_passing_east_flanders}
 \end{listing}
 
@@ -111,11 +111,6 @@ De vijfde query toont aan dat het mogelijk is om manueel een vorm te voorzien om
             7 13.25, 7 9.25))'''^^geo:wktLiteral))
         }
     \end{minted}
-    \caption{Find everything inside the bounding box of Brabant.}
+    \caption{Query om alles te vinden dat binnen de \textit{bounding box} van Brabant ligt.}
     \label{listing:find_everything_bounding_box}
 \end{listing}
-
-
-
-
-\todo{misschien nog extra queries}

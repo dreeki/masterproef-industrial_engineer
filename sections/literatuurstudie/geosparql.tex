@@ -1,7 +1,7 @@
 \section{GeoSPARQL}
 \label{sec:geosparql}
 
-Zoals eerder vermeld is GeoSPARQL één van de vele OGC standaarden. Specifieker is GeoSPARQL uitermate geschikt voor het uitvoeren van \acrshort{gis} queries, maar dit is zeker niet de enige mogelijkheid. Zoals eerder vermeld brengt GeoSPARQL een vocabulair voor de representatie van geospatiale gegevens, gebruik makend van RDF en is GeoSPARQL een uitbreiding op de SPARQL query taal. Het doel van GeoSPARQL is dan ook om geospatiale gegevens te verwerken. Voor het bekomen van een correcte implementatie van GeoSPARQL, zijn er normaliter meerdere voorwaarden waaraan de implementatie moet voldoen. De meeste van deze vereisten maken gebruik van de ``geo'', ``geof'' of ``geor'' ontologie \cite{ogcdocs}.
+Zoals eerder vermeld is GeoSPARQL één van de vele OGC standaarden. Specifieker is GeoSPARQL uitermate geschikt voor het uitvoeren van \acrfull{gis} queries, maar dit is zeker niet de enige mogelijkheid. Zoals eerder vermeld brengt GeoSPARQL een vocabulair voor de representatie van geospatiale gegevens, gebruik makend van RDF en is GeoSPARQL een uitbreiding op de SPARQL query taal. Het doel van GeoSPARQL is dan ook om geospatiale gegevens te verwerken. Voor het bekomen van een correcte implementatie van GeoSPARQL, zijn er normaliter meerdere voorwaarden waaraan de implementatie moet voldoen. De meeste van deze vereisten maken gebruik van de ``geo'', ``geof'' of ``geor'' ontologie \cite{ogcdocs}.
 
 \subsection{Vereisten}
 De vereisten zijn opgelijst in de officiële documentatie. Een samenvatting van het geheel is te vinden hieronder \cite{ogcdocs}. 
@@ -19,7 +19,7 @@ De vereisten zijn opgelijst in de officiële documentatie. Een samenvatting van 
 \label{subsec:geosparql_architecture}
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=0.5\linewidth]{images/geosparql_architecture.png}
+    \includegraphics[width=0.7\linewidth]{images/geosparql_architecture.png}
     \caption{Vereenvoudigd diagram van de GeoSPARQL klassen ``Feature'' en ``Geometry'' met sommige properties (figuur gebaseerd op \cite{geosparqlsupport}).}
     \label{fig:geosparql_architecture}
 \end{figure}
@@ -140,7 +140,7 @@ De eerste relatiefamilie is de ``Simple Feature'' family. De regels van deze fam
         for L/L) \\ \hline
         
     \end{tabular}
-    \caption{Simple Features Topological Relations (tabel van \cite{ogcdocs}).}
+    \caption{Simple Features topologische relaties (tabel van \cite{ogcdocs}).}
     \label{tab:topo_sf}
 \end{table}
 
@@ -184,7 +184,7 @@ Een voorbeeld voor het herschrijven van een query is te vinden in \listingref{li
             { ?f1 ogc:relation ?f2 . }
         }
     \end{minted}
-    \caption{Query to rewrite.}
+    \caption{Voorbeeld query om te herschrijven.}
     \label{listing:geosparql_query_to_rewrite}
 \end{listing}
 
@@ -219,6 +219,6 @@ Een voorbeeld voor het herschrijven van een query is te vinden in \listingref{li
                 filter(ogc:function(?g1Serial, ?g2Serial)) }
         }
     \end{minted}
-    \caption{Query rewrite template (listing van \cite{ogcdocs}).}
+    \caption{Template om queries te herschrijven (listing van \cite{ogcdocs}).}
     \label{listing:geosparql_rewrite_query}
 \end{listing}

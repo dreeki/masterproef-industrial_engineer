@@ -2,10 +2,10 @@
 \label{sec:topologische_functies}
 Een van de belangrijkste functionaliteiten van GeoSPARQL is het topologisch van elkaar kunnen onderscheiden van vormen. Hiervoor zijn er drie verschillende relatiefamilies (zoals eerder aangehaald, zie \subsectionref{subsec:topologische_relaties}). Vanwege de eerder korte periode voor deze masterproef is ervoor gekozen om de focus te leggen op slechts één van deze families, namelijk de ``Simple Features'' familie. Om niet te vaak in herhaling te vallen kan best terugverwezen worden naar \subsubsectionref{subsubsec:simple_features} om te kijken naar de specificaties van deze familie. Om de eerste functie te maken is gekozen voor de ``sfContains'' functie. De \textit{contains}-functie is een veel gebruikte en voor de hand liggende functie, die gaat controleren of een vorm binnen een andere vorm ligt. Om de verschillende functies te testen werd een eenvoudige testset gecreëerd. Deze testset is te zien in \figureref{fig:illustration_spatial_data}. Om tot een eerste uitkomst te komen, was er al een zeer goede oplossing. Dit bleek Terraformer te zijn.
 
-\begin{figure}
+\begin{figure}[ht]
     \centering
     \includegraphics[width=0.5\linewidth]{images/geosparql_example.png}
-    \caption{\textit{Illustration of spatial data} van \cite{ogcdocs}}
+    \caption{Illustratie van geospatiale data van \cite{ogcdocs}}
     \label{fig:illustration_spatial_data}
 \end{figure}
 
@@ -39,7 +39,7 @@ Het laatste en moeilijkste deel is controleren of een vorm binnen een polygoon l
 \begin{figure}
     \centering
     \includegraphics[width=0.5\linewidth]{images/polygon_contains_point.png}
-    \caption{Polygon contains point example.}
+    \caption{Polygon contains point voorbeeld.}
     \label{fig:polygon_contains_point}
 \end{figure}
 
@@ -48,7 +48,7 @@ Het volgende deel is het controleren of een lijn binnen een polygoon ligt. Hierv
 \begin{figure}
     \centering
     \includegraphics[width=0.3\linewidth]{images/polygon_contains_line.png}
-    \caption{Polygon contains line example.}
+    \caption{Polygon contains line voorbeeld.}
     \label{fig:polygon_contains_line}
 \end{figure}
 
@@ -57,7 +57,7 @@ Het laatste deel hierbij is het controleren of een polygoon binnen een polygoon 
 \begin{figure}
     \centering
     \includegraphics[width=0.3\linewidth]{images/polygon_contains_polygon.png}
-    \caption{Polygon contains polygon example.}
+    \caption{Polygon contains polygon voorbeeld.}
     \label{fig:polygon_contains_polygon}
 \end{figure}
 

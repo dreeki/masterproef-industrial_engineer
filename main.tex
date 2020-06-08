@@ -82,7 +82,7 @@
 %
 % Own packages added
 %
-\usepackage[colorinlistoftodos]{todonotes}
+%\usepackage[colorinlistoftodos]{todonotes}
 \usepackage{xcolor}
 \usepackage{tabularx}
 \usepackage[acronym,toc]{glossaries} % moeilijke woorden en afkortingen + in toc plaatsen
@@ -147,8 +147,8 @@
 \newpage\thispagestyle{empty}\mbox{}  % White page
 \include{special_chapters/Dankwoord}          % Word of thanks
 \newpage\thispagestyle{empty}\mbox{}  % White page
-\includepdf[pages={-}]{abstractNL.pdf}  % Extended Abstract not done yet
-\includepdf[pages={-}]{abstractEN.pdf}  % Extended Abstract not done yet
+\includepdf[pages={-}]{abstractNL.pdf}
+\includepdf[pages={-}]{abstractEN.pdf}
 \tableofcontents                      % Table of Contents
 
 
@@ -158,7 +158,7 @@
 \addcontentsline{toc}{chapter}{Lijst van listings} % List of listings in toc
 \printglossary % moeilijke woorden tonen
 \printglossary[type=\acronymtype] % afkortingen tonen
-\listoftodos 						  % show list of all to do's
+%\listoftodos 						  % show list of all to do's
 
 % Include the main chapters of the thesis below
 %
@@ -168,12 +168,5 @@
 \include{chapters/Chapter-Interfaces}
 \include{chapters/Chapter-Conclusie}
 \include{special_chapters/Bibliografie}
-
-\todo{citaat bij begin van een hoofdstuk is fancy}
-\todo{acroniemen en moeilijke woorden tonen! (TPF, W3C)}
-\todo{lijst van woorden aanvullen en naar verwijzen in tekst!}
-\todo{captions naar nederlands}
-\todo{referenties controleren -> geen vraagtekens!!}
-\todo{check overfull hboxes}
 
 \end{document}
