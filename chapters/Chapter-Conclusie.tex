@@ -1,43 +1,43 @@
 \chapter{Conclusie}
 \label{chap:conclusie}
-In dit hoofdstuk worden de resulten, besproken in \chapterref{chap:interfaces}, geïnterpreteerd. Zo wordt een antwoord geformuleerd op de vragen uit \sectionref{sec:onderzoeksvraag}.
+In dit hoofdstuk worden de resultaten, besproken in \chapterref{chap:interfaces}, geïnterpreteerd. Er wordt een antwoord geformuleerd op de vragen uit \sectionref{sec:onderzoeksvraag}.
 
 \textbf{Onderzoeksvraag: Welke ``Linked Data publicatie''-interfaces kunnen uitgebreid worden met GeoSPARQL-functionaliteiten door de filtering op de client uit te voeren?}
 
-Bij masterproef brengt een oplossing om de ``Linked Data publicatie''-interfaces uit te breiden met GeoSPARQL-functionaliteiten. Dit betekent dat er gelinkte data online gepubliceerd wordt. Deze data kan vervolgens opgehaald worden met behulp van SPARQL (zie \sectionref{sec:sparql}). 
+De masterproef brengt een oplossing om de ``Linked Data publicatie''-interfaces uit te breiden met GeoSPARQL-functionaliteiten. Dit betekent dat er gelinkte data online gepubliceerd worden. Deze data kunnen opgehaald worden met behulp van SPARQL (zie \sectionref{sec:sparql}). 
 
-De vraag is nu hoe deze opvraging kan uitgebreid worden met GeoSPARQL-functionaliteiten. Hiervoor wordt gebruik gemaakt van de al bestaande implementatie van Comunica. Door Comunica uit te breiden met deze GeoSPARQL-functionaliteiten wordt gepoogd om op dezelfde manier te kunnen werken als voordien, maar ditmaal met GeoSPARQL-functionaliteiten. Specifiek hierbij wordt de data opgehaald en gefilterd op de client zelf (zoals besproken in \chapterref{chap:interfaces}).
+De vraag is hoe deze opvraging kan uitgebreid worden met GeoSPARQL-functionaliteiten. Hiervoor wordt gebruik gemaakt van de al bestaande implementatie van Comunica. Door Comunica uit te breiden met deze GeoSPARQL-functionaliteiten wordt gepoogd om op dezelfde manier te kunnen werken als voordien, maar ditmaal met GeoSPARQL-functionaliteiten. Specifiek hierbij worden de data opgehaald en gefilterd op de client zelf (zoals besproken in \chapterref{chap:interfaces}).
 
 De meest voorkomende ``Linked Data publicatie''-interfaces voor het gebruik van geospatiale data zijn ``data dumps'', ``TPF interfaces'' en ``SPARQL endpoints''.
 
 \textbf{Hypothese 1: Het is mogelijk om GeoSPARQL queries uit te voeren over ``data dumps'' waarbij de filtering op de client-side gebeurt.}
 
-Bij een ``data dump'' worden de data volledig gedownload op de client. Hier zal de client vervolgens de resultaten joinen zoals nodig in de query. Ten slotte zal de client over de volledige dataset filteren om zo tot het correcte resultaat te komen. 
+Bij een ``data dump'' worden de data volledig gedownload op de client. Hier zal de client vervolgens de resultaten joinen zoals nodig in de query. Ten slotte zal de client over de volledige dataset filteren, om zo tot het correcte resultaat te komen. 
 
 Hieruit volgt dat Hypothese 1 correct is.
 
 \textbf{Hypothese 2: Het is mogelijk om GeoSPARQL queries uit te voeren over ``TPF interfaces'' door de filtering op de client-side uit te voeren.}
 
-De ``TPF interface'' is een server die een dataset bevat. Deze server bevat functionaliteiten om te kunnen antwoorden om vragen naar een \textit{triple pattern fragment}. Zo wordt de volledige query opgesplitst, zodat de ``TPF interface'' het kleinst mogelijke deel van de dataset (dat alle vereiste data bevat) kan terug geven. Hierbij zal de client wederom de resultaten joinen om hierop te kunnen filteren zodat het correcte resultaat bekomen kan worden.
+De ``TPF interface'' is een server die een dataset bevat. Deze server bevat functionaliteiten om te kunnen antwoorden op vragen naar een \textit{triple pattern fragment}. Zo wordt de volledige query opgesplitst, zodat de ``TPF interface'' het kleinst mogelijke deel van de dataset (dat alle vereiste data bevat) kan terug geven. Hierbij zal de client wederom de resultaten joinen om hierop te kunnen filteren zodat het correcte resultaat bekomen kan worden.
 
 Hieruit volgt dat ook Hypothese 2 correct is.
 
 \textbf{Hypothese 3: Het uitvoeren van GeoSPARQL queries op een ``SPARQL endpoint'' is niet vanzelfsprekend. Het is echter mogelijk door de filtering op de client-side uit te voeren.}
 
-Een ``SPARQL endpoint'' is zelfstandig in staat om te antwoorden op een SPARQL query. Hierbij is er geen optie om een GeoSPARQL query door te sturen omdat het ``SPARQL endpoint'' hier niet op kan antwoorden. Bij een ``SPARQL endpoint'' wordt dit probleem aangepakt door niet de volledige query door te sturen, maar in de plaats te tellen hoeveel antwoorden er zijn op elk \textit{triple pattern fragment} in de query. Zo kan de client zelf beslissen welk fragment nodig is om het kleinst mogelijke patroon te vinden. Hierdoor kan het joinen van het resultaat op de client gebeuren. Ook hierbij is dus de laatste stap om het resultaat te filteren op de client. 
+Een ``SPARQL endpoint'' is zelfstandig in staat om te antwoorden op een SPARQL query. Hierbij is er geen optie om een GeoSPARQL query door te sturen omdat het ``SPARQL endpoint'' hier niet kan op antwoorden. Bij een ``SPARQL endpoint'' wordt dit probleem aangepakt door niet de volledige query door te sturen, maar in de plaats te tellen hoeveel antwoorden er zijn op elk \textit{triple pattern fragment} in de query. Zo kan de client zelf beslissen welk fragment nodig is om het kleinst mogelijke patroon te vinden. Hierdoor kan het joinen van het resultaat op de client gebeuren. Ook hierbij is dus de laatste stap om het resultaat te filteren op de client. 
 
 Hieruit volgt dat ook Hypothese 3 correct is.
 
 \section{Toekomstig werk}
 
-De gemaakte implementatie is slechts een beperkte implementatie van GeoSPARQL (zoals vermeld in \subsectionref{subsec:toekomstwerk}). Bij verdere implementatie hiervan moet gecontroleerd worden in hoeverre de libraries (zoals ``Turf'' en ``Proj4'') de vereiste functionaliteiten correct ondersteunen. Enerzijds voorziet Turf een groot arsenaal aan geospatiale functionaliteiten, maar wanneer deze niet helemaal kloppen met de verwachtingen is het niet mogelijk om deze manueel aan te passen om andere conclusies te trekken. Hierbij zou het een meerwaarde zijn om een library te maken die eerder werkt op basis van de DE-9IM intersectie. Hiermee wordt bedoelt dat de DE-9IM intersectie aangegeven zou worden door deze nieuwe library. Aan de hand van DE-9IM worden alle vereisten van de GeoSPARQL-functionaliteiten uitgedrukt. Zo zou het eenvoudiger zijn om een specifieke functionaliteit van GeoSPARQL correct te implementeren. 
+De gemaakte implementatie is slechts een beperkte implementatie van GeoSPARQL (zoals vermeld in \subsectionref{subsec:toekomstwerk}). Bij verdere implementatie hiervan moet gecontroleerd worden in hoeverre de libraries (zoals ``Turf'' en ``Proj4'') de vereiste functionaliteiten correct ondersteunen. Enerzijds voorziet Turf een groot arsenaal aan geospatiale functionaliteiten, maar wanneer deze niet helemaal kloppen met de verwachtingen is het niet mogelijk om deze manueel aan te passen, om andere conclusies te trekken. Hierbij zou het een meerwaarde zijn om een \textit{library} te maken die eerder werkt op basis van de DE-9IM intersectie. Hiermee wordt bedoeld dat de DE-9IM intersectie aangegeven zou worden door deze nieuwe \textit{library}. Aan de hand van DE-9IM worden alle vereisten van de GeoSPARQL-functionaliteiten uitgedrukt. Zo zou het eenvoudiger zijn om een specifieke functionaliteit van GeoSPARQL correct te implementeren. 
 
-Verder zou het ideaal zijn moest Sparqlee uitgebreid worden met \textit{custom} functies, zodat de GeoSPARQL-functionaliteiten in Comunica zelf geïmplementeerd kunnen worden. Deze zouden dan geïnjecteerd moeten worden in Sparqlee. Op deze manier kan de modulariteit van Comunica volledig benut worden.
+Verder zou het ideaal zijn, moest Sparqlee uitgebreid worden met \textit{custom} functies, zodat de GeoSPARQL-functionaliteiten in Comunica zelf geïmplementeerd kunnen worden. Deze zouden dan geïnjecteerd moeten worden in Sparqlee. Op deze manier kan de modulariteit van Comunica volledig benut worden.
 
 Als laatste blijft het steeds een zoektocht naar de meest performante manier om alles te verwerken. In deze masterproef werd rekening gehouden met performantie, maar aangezien dit niet de focus was, is hier niet te diep op ingegaan. Zo dient er een benchmarking te gebeuren ter controle of de gemaakte oplossingen schaalbaar zijn.
 
 \section{Tot slot}
-In deze masterproef is een implementatie gemaakt van GeoSPARQL. Zoals besproken in \chapterref{chap:implementatie} is deze implementatie grotendeels gemaakt in Sparqlee, met een eigen GeoSPARQL actor in Comunica. Hierbij is gebruik gemaakt van de libraries ``Turf'', ``Proj4'' en ``Terraformer''. Bij deze implementatie is bovendien een client gemaakt, zodat dit geheeld in een visuele omgeving zichtbaar is. Deze omgeving voorziet voldoende logs om te controleren hoe alles samenwerkt. Daarnaast is het mogelijk om de performantie te controleren aangezien deze client meegeeft hoelang de query duurde om uit te voeren. 
+In deze masterproef is een implementatie gemaakt van GeoSPARQL. Zoals besproken in \chapterref{chap:implementatie} is deze implementatie grotendeels gemaakt in Sparqlee, met een eigen GeoSPARQL actor in Comunica. Hierbij is gebruik gemaakt van de libraries ``Turf'', ``Proj4'' en ``Terraformer''. Bij deze implementatie is bovendien een client gemaakt, zodat dit geheel in een visuele omgeving zichtbaar is. Deze omgeving voorziet voldoende logs om te controleren hoe alles samenwerkt. Daarnaast is het mogelijk om de performantie te controleren, aangezien deze client meegeeft hoelang de query duurde om uit te voeren. 
 
 Vervolgens werd deze implementatie toegepast in \chapterref{chap:interfaces}. Hierbij werd getest of de verschillende interfaces uitgebreid konden worden met GeoSPARQL-functionaliteiten. In dit hoofdstuk wordt beschreven hoe het geheel in zijn werk gaat. Aan de hand van deze beschrijving wordt nogmaals duidelijk waarom het filteren op de client belangrijk is. 
 

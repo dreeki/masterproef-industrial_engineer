@@ -1,6 +1,6 @@
 \section{Testset}
 \label{sec:testset}
-Bij de testset is ervoor gekozen om een oppervlakkige tekening te maken van België in een aangepaste schaal. Deze keuze is gemaakt vanwegen meerdere redenen. Om te beginnen laat deze aangepaste schaal zeer makkelijk toe om (als mens) vlakken te beschrijven. Aangezien dit een technisch en bovendien vooruitstrevend onderwerp is, is het handig om terug te keren naar een bekender terein. Daarom is de bekendheid van deze \textit{use case} meteen de tweede reden van deze keuze. Een derde reden is dat deze dataset eerder klein is, waardoor mogelijke fouten of onlogische oplossingen hierbij nogmaals getest worden. Ten slotte is dit ook de perfecte dataset voor het geven van demonstraties omdat deze set herkenbaar is voor het publiek. Een visualisatie van deze dataset is te zien in \figureref{fig:demoset}. De effectieve dataset is dan weer te vinden op GitHub Gist\footnote{https://gist.github.com/dreeki/e48bbe533a4b1191045b3652ff2c9c81}. Deze dataset is bovendien opgesplitst in vijf verschillende bestanden (namelijk: ``land'', ``gewest'', ``provincie'', ``weg'' en ``stad'') zodat deze dataset bruikbaar is voor het verifiëren of gefedereerd queryen nog steeds mogelijk is. Het geheel van deze testing wordt uitgevoerd in de testomgeving die besproken werd in \sectionref{sec:testomgeving}. Hierbij zorgt de \textit{execution log} ervoor dat alles duidelijk is hoe het geheel in zijn werk gaat.
+Bij de testset is ervoor gekozen om een oppervlakkige tekening te maken van België in een aangepaste schaal. Deze keuze is gemaakt om meerdere redenen. Om te beginnen laat deze aangepaste schaal zeer gemakkelijk toe om (als mens) vlakken te beschrijven. Aangezien dit een technisch en bovendien vooruitstrevend onderwerp is, is het handig om terug te keren naar een bekender terein. Daarom is de bekendheid van deze \textit{use case} meteen de tweede reden van deze keuze. Een derde reden is dat deze dataset eerder klein is, waardoor mogelijke fouten of onlogische oplossingen hierbij nogmaals getest worden. Ten slotte is dit ook de perfecte dataset voor het geven van demonstraties omdat deze set herkenbaar is voor het publiek. Een visualisatie van deze dataset is te zien in \figureref{fig:demoset}. De effectieve dataset is dan weer te vinden op GitHub Gist\footnote{https://gist.github.com/dreeki/e48bbe533a4b1191045b3652ff2c9c81}. Deze dataset is bovendien opgesplitst in vijf verschillende bestanden (namelijk: ``land'', ``gewest'', ``provincie'', ``weg'' en ``stad'') zodat deze dataset bruikbaar is voor het verifiëren of gefedereerd queryen nog steeds mogelijk is. Het geheel van deze testing wordt uitgevoerd in de testomgeving die besproken werd in \sectionref{sec:testomgeving}. Hierbij zorgt de \textit{execution log} ervoor dat alles duidelijk is hoe het geheel in zijn werk gaat.
 
 \begin{figure}
     \centering
@@ -12,8 +12,6 @@ Bij de testset is ervoor gekozen om een oppervlakkige tekening te maken van Belg
 
 \subsection{queries}
 Voor de uitvoering van de tests zijn verschillende queries opgesteld om mee te testen. In de testomgeving zelf kunnen hierbij vervolgens de bronnen aangepast worden naar de te testen bronnen. Het is echter wel nog op te merken dat de ontologieën bij de testomgeving reeds in code aangegeven werden. Bij gevolg worden deze niet opnieuw mee opgenomen in de geschreven query, maar in de achtergrond worden deze dus wel nog gebruikt.
-\todo{my:hasExactGeometry aanpassen en op gist aanpassen!}
-
 
 \subsubsection{Query 1}
 De eerste \textit{query} zoekt naar alle provincies die binnen Vlaanderen liggen. Om dit te kunnen doen zal de \textit{query engine} eerst de vorm van Vlaanderen zelf opzoeken. Daarna zal hij de vorm van alle provincies zoeken zodat hij met de ``sfContains'' functie van GeoSPARQL uiteindelijk kan filteren. Deze query is te zien in \listingref{listing:find_provinces_flanders}.
@@ -81,7 +79,7 @@ De derde query gaat dan weer over het vinden van de wegen en provincies die binn
 
 
 \subsubsection{Query 4}
-Bij de vierde query worden alle wegen die door Oost-Vlaanderen gaan opgezocht. Dit zou bijvoorbeeld handig kunnen zijn wanneer iemand de snelwegen wil vinden die makkelijk bereikbaar zijn vanuit Oost-Vlaanderen. Hierbij wordt de functie ``sfIntersects'' van GeoSPARQL gebruikt. Deze query is te zien in \listingref{listing:find_roads_passing_east_flanders}.
+Bij de vierde query worden alle wegen die door Oost-Vlaanderen gaan opgezocht. Dit zou bijvoorbeeld handig kunnen zijn wanneer iemand de snelwegen wil vinden die eenvoudig bereikbaar zijn vanuit Oost-Vlaanderen. Hierbij wordt de functie ``sfIntersects'' van GeoSPARQL gebruikt. Deze query is te zien in \listingref{listing:find_roads_passing_east_flanders}.
 
 \begin{listing}[ht]
     \begin{minted}{sparql}
