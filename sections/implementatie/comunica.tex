@@ -26,15 +26,13 @@ Zoals eerder aangehaald speelt Comunica een zeer belangrijke rol bij deze implem
             type: 'expression',
             expressionType: 'operator',
             operator: '&&',
-            args: [
-            {
+            args: [{
                 type: 'expression',
                 expressionType: 'named',
                 name: NamedNode {
                 id: 'http://www.opengis.net/def/function/geosparql/sfContains'
                 },
-                args: [
-                {
+                args: [{
                     type: 'expression',
                     expressionType: 'term',
                     term: Variable { id: '?aWKT' }
@@ -43,20 +41,17 @@ Zoals eerder aangehaald speelt Comunica een zeer belangrijke rol bij deze implem
                     type: 'expression',
                     expressionType: 'term',
                     term: Variable { id: '?fWKT' }
-                }
-                ]
+                }]
             },
             {
                 type: 'expression',
                 expressionType: 'operator',
                 operator: '!',
-                args: [
-                {
+                args: [{
                     type: 'expression',
                     expressionType: 'operator',
                     operator: 'sameterm',
-                    args: [
-                    {
+                    args: [{
                         type: 'expression',
                         expressionType: 'term',
                         term: Variable { id: '?aWKT' }
@@ -65,13 +60,9 @@ Zoals eerder aangehaald speelt Comunica een zeer belangrijke rol bij deze implem
                         type: 'expression',
                         expressionType: 'term',
                         term: Variable { id: '?fWKT' }
-                    }
-                    ]
-                }
-                ]
-            }
-            ]
-        }
+                    }]
+                }]
+            }]
         }
     \end{minted}
     \caption{Voorbeeld SPARQL algebra.}
