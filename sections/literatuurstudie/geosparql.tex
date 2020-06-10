@@ -1,18 +1,18 @@
 \section{GeoSPARQL}
 \label{sec:geosparql}
 
-Zoals eerder vermeld is GeoSPARQL één van de vele OGC standaarden. Specifieker is GeoSPARQL uitermate geschikt voor het uitvoeren van \acrfull{gis} queries, maar dit is zeker niet de enige mogelijkheid. Zoals eerder vermeld brengt GeoSPARQL een vocabulair voor de representatie van geospatiale gegevens, gebruik makend van RDF en is GeoSPARQL een uitbreiding op de SPARQL query taal. Het doel van GeoSPARQL is dan ook om geospatiale gegevens te verwerken. Voor het bekomen van een correcte implementatie van GeoSPARQL, zijn er normaliter meerdere voorwaarden waaraan de implementatie moet voldoen. De meeste van deze vereisten maken gebruik van de ``geo'', ``geof'' of ``geor'' ontologie \cite{ogcdocs}.
+Zoals eerder vermeld is GeoSPARQL één van de vele OGC standaarden. Specifieker is GeoSPARQL uitermate geschikt voor het uitvoeren van \acrshort{gis} queries, maar dit is zeker niet de enige mogelijkheid. Zoals eerder vermeld brengt GeoSPARQL een vocabulair voor de representatie van geospatiale gegevens, gebruik makend van RDF en is GeoSPARQL een uitbreiding op de SPARQL query taal. Het doel van GeoSPARQL is dan ook om geospatiale gegevens te verwerken. Voor het bekomen van een correcte implementatie van GeoSPARQL, zijn er normaliter meerdere voorwaarden waaraan de implementatie moet voldoen. De meeste van deze vereisten maken gebruik van de ``geo'', ``geof'' of ``geor'' ontologie \cite{ogcdocs}.
 
 \subsection{Vereisten}
 De vereisten zijn opgelijst in de officiële documentatie. Een samenvatting van het geheel is te vinden hieronder \cite{ogcdocs}. 
 \begin{enumerate}
-    \item \textbf{SPARQL}: Deze vereiste is meteen ook de belangrijkste. Deze stelt dat er een werkende implementatie van SPARQL aanwezig moet zijn. Dit betekent dat een implementatie GeoSPARQL ook alle mogelijkheden van SPARQL moet voorzien.
+    \item \textbf{SPARQL}: Deze vereiste is meteen ook de belangrijkste. Deze stelt dat een werkende implementatie van SPARQL aanwezig moet zijn. Dit betekent dat een implementatie GeoSPARQL ook alle mogelijkheden van SPARQL moet voorzien.
     \item \textbf{Klassen}: een correcte implementatie van GeoSPARQL moet de RDFS klassen ``geo: SpatialObject'', ``geo:Feature'' en ``geo:Geometry'' toestaan.
     \item \textbf{Properties}: verder moet een implementatie van GeoSPARQL ook verschillende attributen, zoals ``geo:sfContains'', ``geo:hasGeometry'' en ``geo:dimension'' naast vele andere, toestaan.
     \item \textbf{WKT}: RDFS \textit{literals} van het type ``geo:wktLiteral'' bevatten mogelijks een URI die het coördinaat stelsel van deze coördinaten beschrijft. Indien deze URI niet aanwezig is wordt er gekozen voor ``<http://www.opengis.net/def/crs/OGC/1.3/CRS84>''. Daarnaast moeten de coördinaten geïnterpreteerd worden zoals beschreven in het referentiesysteem.
     \item \textbf{GML}: naast WKT moet GML ook ondersteund worden. De implementatie moet zelf documenteren welke profielen ondersteund worden.
     \item \textbf{Functies}: Bij de implementatie van GeoSPARQL moeten meerdere functies ondersteund worden. Hierin is onderscheid gemaakt tussen topologische functies (zoals onder andere ``geof:sfContains'' en ``geof:ehContains'') en niet-topologische functies (zoals ``geof:distance'' en ``geof:union'').
-    \item \textbf{Entailment}: GeoSPARQL moet dezelfde semantiek voor \textit{basic graph pattern matching} hanteren als SPARQL. Dit houdt in dat een functie als predikaat moet kunnen omgezet worden naar een query die ook functies berekent om aan een correct resultaat te komen. Hiervoor gebruikt het regels zoals onder andere ``geor:sfContains''.
+    \item \textbf{Entailment}: GeoSPARQL moet dezelfde semantiek voor \textit{basic graph pattern matching} hanteren als SPARQL. Dit houdt in dat een functie als predicaat moet kunnen omgezet worden naar een query die ook functies berekent om aan een correct resultaat te komen. Hiervoor gebruikt het regels zoals onder andere ``geor:sfContains''.
 \end{enumerate}
 
 \subsection{Architectuur}
@@ -28,24 +28,24 @@ Om de architectuur vereenvoudigd weer te geven kan \figureref{fig:geosparql_arch
 
 \subsection{Properties}
 \label{subsec:geosparql_properties}
-GeoSPARQL voorzien een hele lijst met properties die voorzien moet worden. Vanwege de eerder korte periode om een volledige implementatie van GeoSPARQL te maken, wordt hier minder aandacht aan gegeven. Enkele voorbeelden van deze attributen zijn de volgende \cite{ogcdocs}:
+GeoSPARQL voorziet een hele lijst met properties die voorzien moet worden. Vanwege de eerder korte periode om een volledige implementatie van GeoSPARQL te maken, wordt hier minder aandacht aan gegeven. Enkele voorbeelden van deze attributen zijn de volgende \cite{ogcdocs}:
 
 \begin{itemize}
     \item \textbf{geo:isEmpty}: dit attribuut zal ``true'' terug geven indien de geometrie geen punten bevat.
     \item \textbf{geo:isSimple}: Dit attribuut zal ``true'' geven indien de geometrie geen intersecties met zichzelf bevat. Dit kan wel uitgezonderd zijn \textit{boundary} zijn.
-    \item \textbf{geo:hasSerialization}: Dit attribuut wordt gebruikt om een geometrie te connecteren met zijn text-gebaseerde serialisatie. Dit kan WKT of GML zijn, maar aangezien deze uitgebreid besproken zijn in \sectionref{sec:ogc}, wordt dit hier niet herhaald. Het kan wel nogmaals benadrukt worden dat deze \textit{literal} optioneel kan bijhouden welk topologisch referentiesysteem gebruikt wordt. Het is wel belangrijk te weten waarom deze referentiesystemen zo belangrijk zijn. Australië bijvoorbeeld, verdrijft jaarlijks wat van zijn oorspronkelijke locatie. Na een aantal jaar zou elk huis op de kaart een volledig huis verder liggen, waardoor de informatie nutteloos geworden is. GeoSPARQL lost dit op met het gebruik van de referentiesystemen.
+    \item \textbf{geo:hasSerialization}: Dit attribuut wordt gebruikt om een geometrie te connecteren met zijn text-gebaseerde serialisatie. Dit kan WKT of GML zijn, maar aangezien deze uitgebreid besproken zijn in \sectionref{sec:ogc}, wordt dit hier niet herhaald. Het kan wel nogmaals benadrukt worden dat deze \textit{literal} optioneel kan bijhouden welk topologisch referentiesysteem gebruikt wordt. Het is wel belangrijk te weten waarom deze referentiesystemen zo belangrijk zijn. Australië verdrijft bijvoorbeeld jaarlijks wat van zijn oorspronkelijke locatie. Na een aantal jaar zou elk huis op de kaart een volledig huis verder liggen, waardoor de informatie nutteloos geworden is. GeoSPARQL lost dit op met het gebruik van de referentiesystemen.
 \end{itemize}
 
 
 \subsection{Topologische relaties}
 \label{subsec:topologische_relaties}
-Om topologische relaties te kunnen beschrijven, wordt er gebruik gemaakt van drie relatiefamilies. Deze relatiefamilies beschrijven grotendeels gelijkaardige topologische relaties, maar met licht verschillende specificaties. De drie relatiefamilies zijn ``Simple Features (sf)'', ``Egenhofer (eh)'' en ``RCC8''. Om de spatiale relaties te beschrijven wordt gebruik gemaakt van een ``DE-9IM'' patroon. Voordat de relatiefamilies uitgelegd kunnen worden, is een volledig begrip van de DE-9IM notatie noodzakelijk.
+Om topologische relaties te kunnen beschrijven, wordt er gebruik gemaakt van drie relatiefamilies. Deze relatiefamilies beschrijven grotendeels gelijkaardige topologische relaties, maar met licht verschillende specificaties. De drie relatiefamilies zijn ``Simple Features (sf)'', ``Egenhofer (eh)'' en ``RCC8''. Om de spatiale relaties te beschrijven wordt gebruik gemaakt van een ``DE-9IM'' patroon. Alvorens de relatiefamilies uitgelegd kunnen worden, is een volledig begrip van de DE-9IM notatie noodzakelijk.
 
 \subsubsection{DE-9IM}
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.9\linewidth]{images/spatial_objects_DE-9IM.png}
-    \caption{Spatiale objecten met hun \textit{interior}, \textit{boundary} en \textit{exterior}: (a) Een punt; (b) Een lijn; (c) Een vlak. Figuur van \cite{shen2018classification}}.
+    \caption{Spatiale objecten met hun \textit{interior}, \textit{boundary} en \textit{exterior}: (a) Een punt; (b) Een lijn; (c) Een vlak. Figuur van \cite{shen2018classification}.}
     \label{fig:de-9im}
 \end{figure}
 
@@ -97,7 +97,7 @@ Hierbij wordt het patroon geschreven als een sequentie van negen karakters. Als 
 \end{equation*}
 Indien er meer dan één lijn staat, wil dit zeggen dat één van de mogelijke matrices voldoende is om te besluiten dat de relatie klopt.
 
-Ten slotte kunnen ook niet alle relaties voorkomen bij elke object-combinatie (bijvoorbeeld twee punten kunnen elkaar niet kruisen). Daarom wordt er ook een nieuwe notatie toegevoegd in de GeoSPARQL-documentatie, om te vermelden op welke spatiale objecten het DE-9IM intersectie patroon van toepassing is. Hierbij staat symbool ``P'' voor 0-dimensionale geometrieën (zoals punten). Het symbool ``L'' staat dan weer voor 1-dimensionale geometrieën (zoals lijnen). Het laatste symbool is ``A'', wat dan weer staat voor 2-dimensionale geometrieën (zoals vlakken) \cite{ogcdocs}.
+Ten slotte kunnen ook niet alle relaties voorkomen bij elke object-combinatie (bijvoorbeeld twee punten kunnen elkaar niet kruisen). Daarom wordt er ook een nieuwe notatie toegevoegd in de GeoSPARQL-documentatie, om te vermelden op welke spatiale objecten het DE-9IM intersectiepatroon van toepassing is. Hierbij staat symbool ``P'' voor 0-dimensionale geometrieën (zoals punten). Het symbool ``L'' staat dan weer voor 1-dimensionale geometrieën (zoals lijnen). Het laatste symbool is ``A'', wat dan weer staat voor 2-dimensionale geometrieën (zoals vlakken) \cite{ogcdocs}.
 
 
 \subsubsection{Simple Features}
@@ -147,7 +147,7 @@ De eerste relatiefamilie is de ``Simple Feature'' family. De regels van deze fam
 
 \subsection{Niet-topologische relaties}
 
-Verder zijn er ook de niet-topologische relaties. Verschillende van deze functies gebruiken een meeteenheid URI. Daarom heeft het OGC enkele standaard meeteenheden gedefinieerd, te vinden onder de \textit{namespace} ``http://www.opengis.net/def/uom/OGC/''. Een voorbeeld van zo een meeteenheid is ``<http://www.opengis.net/def/uom/OGC/metre>''. Enkele van de niet-topologische functies zijn de volgende: \cite{ogcdocs}.
+Verder zijn er ook de niet-topologische relaties. Verschillende van deze functies gebruiken een meeteenheid-URI. Daarom heeft het OGC enkele standaard meeteenheden gedefinieerd, te vinden onder de \textit{namespace} ``http://www.opengis.net/def/uom/OGC/''. Een voorbeeld van een dergelijke meeteenheid is ``<http://www.opengis.net/def/uom/OGC/metre>''. Enkele van de niet-topologische functies zijn de volgende: \cite{ogcdocs}.
 
 \begin{itemize}
     \item \textbf{geof:distance}: deze functie moet de kortst mogelijke afstand geven tussen twee objecten.
@@ -164,9 +164,9 @@ Ten slotte is het belangrijk te vermelden dat alle berekeningen horen te gebeure
 
 \subsection{Query Rewrite Extension}
 \label{subsec:geosparql_rewrite_query}
-De laatste uitdaging is het probleem waar de topologische functies als predikaat staan. Hierbij zou verwacht worden dat deze op voorhand berekend zijn en zo opgeslagen zijn in de RDF dataset. Hierbij is echter het probleem dat wanneer dit niet op voorhand berekend is, men nog steeds de correcte oplossing wil. Wanneer een deel van de gegevens uit de ene dataset komt en het andere deel uit een andere bron, zelfs dan wordt een correct antwoord verwacht, hoewel hier geen optie is tot het op voorhand uitrekenen \cite{ogcdocs}. 
+De laatste uitdaging is het probleem waar de topologische functies als predicaat staan. Hierbij zou verwacht worden dat deze op voorhand berekend zijn en zo opgeslagen zijn in de RDF dataset. Hierbij is echter het probleem dat wanneer dit niet op voorhand berekend is, men nog steeds de correcte oplossing wil. Wanneer een deel van de gegevens uit de ene dataset komt en het andere deel uit een andere bron, zelfs dan wordt een correct antwoord verwacht, hoewel hier geen optie is tot het op voorhand uitrekenen \cite{ogcdocs}. 
 
-Hiervoor wordt gebruik gemaakt van de \textit{query rewrite} uitbreiding. Deze techniek zal de query uitbreiden, door de unie (de SPARQL \textit{union}, niet de niet-topologische functie van GeoSPARQL!) te nemen van de oorspronkelijke stelling met enerzijds de relatie als predikaat en anderzijds het nieuwe uitgebreide deel waarbij dezelfde relatie uitgerekend wordt als functie. Hierbij is het ook belangrijk rekening te houden met het verschil tussen een ``Feature'' en een ``Geometry'' (zoals uitgelegd in \subsectionref{subsec:geosparql_architecture}), waardoor er vier extra delen nodig zijn voor de mogelijke combinaties tussen ``Feature'' en ``Geometry'' \cite{ogcdocs}. 
+Hiervoor wordt gebruik gemaakt van de \textit{query rewrite} uitbreiding. Deze techniek zal de query uitbreiden, door de unie (de SPARQL \textit{union}, niet de niet-topologische functie van GeoSPARQL!) te nemen van de oorspronkelijke stelling met enerzijds de relatie als predicaat en anderzijds het nieuwe uitgebreide deel waarbij dezelfde relatie uitgerekend wordt als functie. Hierbij is het ook belangrijk rekening te houden met het verschil tussen een ``Feature'' en een ``Geometry'' (zoals uitgelegd in \subsectionref{subsec:geosparql_architecture}), waardoor er vier extra delen nodig zijn voor de mogelijke combinaties tussen ``Feature'' en ``Geometry'' \cite{ogcdocs}. 
 
 Zo heeft het OGC een template gemaakt om dit te herschrijven. Bij deze template zijn er een aantal placeholders gebruikt \cite{ogcdocs}:
 \begin{itemize}
@@ -175,7 +175,7 @@ Zo heeft het OGC een template gemaakt om dit te herschrijven. Bij deze template 
     \item \textbf{ogc:asGeomLiteral}: deze placeholder staat voor één van de serialisatie technieken om het object te bekomen.
 \end{itemize}
 
-Een voorbeeld voor het herschrijven van een query is te vinden in \listingref{listing:geosparql_query_to_rewrite}, maar de uiteindelijke template voor het herschrijven van de query is te vinden in \listingref{listing:geosparql_rewrite_query}.
+Een voorbeeld voor het herschrijven van een query is te vinden in \listingref{listing:geosparql_query_to_rewrite}, maar het uiteindelijke template voor het herschrijven van de query is te vinden in \listingref{listing:geosparql_rewrite_query}.
 
 \begin{listing}[ht]
     \begin{minted}{sparql}
@@ -184,7 +184,7 @@ Een voorbeeld voor het herschrijven van een query is te vinden in \listingref{li
             { ?f1 ogc:relation ?f2 . }
         }
     \end{minted}
-    \caption{Voorbeeld query om te herschrijven.}
+    \caption{Voorbeeldquery die herschreven zal worden.}
     \label{listing:geosparql_query_to_rewrite}
 \end{listing}
 
@@ -219,6 +219,6 @@ Een voorbeeld voor het herschrijven van een query is te vinden in \listingref{li
                 filter(ogc:function(?g1Serial, ?g2Serial)) }
         }
     \end{minted}
-    \caption{Template om queries te herschrijven (listing van \cite{ogcdocs}).}
+    \caption{Template om queries te herschrijven (codefragment van \cite{ogcdocs}).}
     \label{listing:geosparql_rewrite_query}
 \end{listing}

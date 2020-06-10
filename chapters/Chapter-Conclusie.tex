@@ -40,7 +40,7 @@ De gemaakte implementatie is slechts een beperkte implementatie van GeoSPARQL (z
 
 Verder zou het ideaal zijn, moest Sparqlee uitgebreid worden met \textit{custom} functies, zodat de GeoSPARQL-functionaliteiten in Comunica zelf geïmplementeerd kunnen worden. Deze zouden dan geïnjecteerd moeten worden in Sparqlee. Op deze manier kan de modulariteit van Comunica volledig benut worden.
 
-Als laatste blijft het steeds een zoektocht naar de meest performante manier om alles te verwerken. In deze masterproef werd rekening gehouden met performantie, maar aangezien dit niet de focus was, is hier niet te diep op ingegaan. Zo dient er een benchmarking te gebeuren ter controle of de gemaakte oplossingen schaalbaar zijn.
+Als laatste blijft het steeds een zoektocht naar de meest performante manier om alle data te verwerken. In deze masterproef werd rekening gehouden met performantie, maar aangezien dit niet de focus was, is hier niet te diep op ingegaan. Zo dient er een benchmarking te gebeuren ter controle of de gemaakte oplossingen schaalbaar zijn.
 
 \section{Tot slot}
 In deze masterproef is een implementatie gemaakt van GeoSPARQL. Zoals besproken in \chapterref{chap:implementatie} is deze implementatie grotendeels gemaakt in Sparqlee, met een eigen GeoSPARQL actor in Comunica. Hierbij is gebruik gemaakt van de libraries ``Turf'', ``Proj4'' en ``Terraformer''. Bij deze implementatie is bovendien een client gemaakt, zodat dit geheel in een visuele omgeving zichtbaar is. Deze omgeving voorziet voldoende logs om te controleren hoe alles samenwerkt. Daarnaast is het mogelijk om de performantie te controleren, aangezien deze client meegeeft hoelang de query duurde om uit te voeren. 

@@ -10,11 +10,11 @@ Bij de testset is ervoor gekozen om een oppervlakkige tekening te maken van Belg
 \end{figure}
 
 
-\subsection{queries}
-Voor de uitvoering van de tests zijn verschillende queries opgesteld om mee te testen. In de testomgeving zelf kunnen hierbij vervolgens de bronnen aangepast worden naar de te testen bronnen. Het is echter wel nog op te merken dat de ontologieën bij de testomgeving reeds in code aangegeven werden. Bij gevolg worden deze niet opnieuw mee opgenomen in de geschreven query, maar in de achtergrond worden deze dus wel nog gebruikt.
+\subsection{Queries}
+Voor de uitvoering van de tests zijn verschillende queries opgesteld om mee te testen. In de testomgeving kunnen hierbij vervolgens de bronnen aangepast worden naar de te testen bronnen. Echter moet opgemerkt worden dat de ontologieën bij de testomgeving reeds in code aangegeven werden. Bijgevolg worden deze niet opnieuw mee opgenomen in de geschreven query, maar in de achtergrond worden deze dus wel nog gebruikt.
 
 \subsubsection{Query 1}
-De eerste \textit{query} zoekt naar alle provincies die binnen Vlaanderen liggen. Om dit te kunnen doen zal de \textit{query engine} eerst de vorm van Vlaanderen zelf opzoeken. Daarna zal hij de vorm van alle provincies zoeken zodat hij met de ``sfContains'' functie van GeoSPARQL uiteindelijk kan filteren. Deze query is te zien in \listingref{listing:find_provinces_flanders}.
+De eerste \textit{query} zoekt naar de provincies die binnen Vlaanderen liggen. Om dit te kunnen doen zal de \textit{query engine} eerst de vorm van Vlaanderen zelf opzoeken. Daarna zal hij de vorm van alle provincies zoeken zodat hij met de ``sfContains'' functie van GeoSPARQL uiteindelijk kan filteren. Deze query is te zien in \listingref{listing:find_provinces_flanders}.
 
 \begin{listing}[ht]
     \begin{minted}{sparql}
@@ -28,13 +28,13 @@ De eerste \textit{query} zoekt naar alle provincies die binnen Vlaanderen liggen
             FILTER (geof:sfContains(?aWKT, ?fWKT))
         }
     \end{minted}
-    \caption{Query om alle provincies in Vlaanderen te vinden.}
+    \caption{Query die alle provincies in Vlaanderen zoekt.}
     \label{listing:find_provinces_flanders}
 \end{listing}
 
 
 \subsubsection{Query 2}
-De tweede \textit{query} is zeer gelijkaardig aan de eerste, maar hier is één groot verschil. Deze \textit{query} zoekt naar alles dat binnen Vlaanderen ligt. Aangezien ``sfContains'' functie stelt dat een geospatiaal identieke vorm steeds binnen de andere ligt, zou deze query Vlaanderen zelf ook als een oplossing zien. Aangezien dit niet het verwachte resultaat is, wordt gebruik gemaakt van de negatie van de ``sameterm'' functie van SPARQL. Dit wijst er nogmaals op dat een werkende implementatie van SPARQL een vereiste is voor het maken van een GeoSPARQL implementatie. Deze query is te zien in \listingref{listing:find_everything_flanders}.
+De tweede \textit{query} is zeer gelijkaardig aan de eerste, maar hier is één groot verschil. Deze \textit{query} zoekt naar alle objecten die binnen Vlaanderen ligt. Aangezien ``sfContains'' functie stelt dat een geospatiaal identieke vorm steeds binnen de andere ligt, zou deze query Vlaanderen zelf ook als een oplossing zien. Aangezien dit niet het verwachte resultaat is, wordt gebruik gemaakt van de negatie van de ``sameterm'' functie van SPARQL. Dit wijst er nogmaals op dat een werkende implementatie van SPARQL een vereiste is voor het maken van een GeoSPARQL implementatie. Deze query is te zien in \listingref{listing:find_everything_flanders}.
 
 \begin{listing}[ht]
     \begin{minted}{sparql}
@@ -47,13 +47,13 @@ De tweede \textit{query} is zeer gelijkaardig aan de eerste, maar hier is één 
             FILTER (geof:sfContains(?aWKT, ?fWKT) && !sameterm(?aWKT, ?fWKT))
         }
     \end{minted}
-    \caption{Query om alles te vinden dat geospatiaal in Vlaanderen ligt.}
+    \caption{Query die geospatiale objecten in Vlaanderen zoekt.}
     \label{listing:find_everything_flanders}
 \end{listing}
 
 
 \subsubsection{Query 3}
-De derde query gaat dan weer over het vinden van de wegen en provincies die binnen België liggen. Deze query toont nogmaals aan hoe gelijkaardig SQL en SPARQL zijn. Deze query is te zien in \listingref{listing:find_provinces_roads_belgium}.
+De derde query zoekt dan weer de wegen en provincies die binnen België liggen. Deze query toont nogmaals aan hoe gelijkaardig SQL en SPARQL zijn. Deze query is te zien in \listingref{listing:find_provinces_roads_belgium}.
 
 \begin{listing}[ht]
     \begin{minted}{sparql}
@@ -73,7 +73,7 @@ De derde query gaat dan weer over het vinden van de wegen en provincies die binn
             FILTER (geof:sfContains(?aWKT, ?fWKT))
         }
     \end{minted}
-    \caption{Query om alles provincies en wegen in België te vinden.}
+    \caption{Query die provincies en wegen in België zoekt.}
     \label{listing:find_provinces_roads_belgium}
 \end{listing}
 
@@ -93,13 +93,13 @@ Bij de vierde query worden alle wegen die door Oost-Vlaanderen gaan opgezocht. D
             FILTER (geof:sfIntersects(?aWKT, ?fWKT))
         }
     \end{minted}
-    \caption{Query om alle wegen te vinden die door Oost-Vlaanderen lopen.}
+    \caption{Query die wegen die door Oost-Vlaanderen lopen, zoekt.}
     \label{listing:find_roads_passing_east_flanders}
 \end{listing}
 
 
 \subsubsection{Query 5}
-De vijfde query toont aan dat het mogelijk is om manueel een vorm te voorzien om op te filteren. Deze vorm staat (bij de aangepaste schaal) voor de \textit{bounding box} van Vlaams-Brabant en Waals-Brabant. Deze query zal alles weergeven dat zich binnen deze vorm bevindt. Voor de verandering wordt hier de ``sfWithin'' functie van GeoSPARQL gebruikt, maar dit zou evengoed mogelijk zijn met de ``sfContains'' functie. Deze query is te zien in \listingref{listing:find_everything_bounding_box}.
+De vijfde query toont aan dat het mogelijk is om manueel een vorm te voorzien om op te filteren. Deze vorm staat (bij de aangepaste schaal) voor de \textit{bounding box} van Vlaams-Brabant en Waals-Brabant. Deze query zal alles weergeven dat zich binnen deze vorm bevindt. Om te variëren op vlak van gebruikte functie, wordt hier de ``sfWithin'' functie van GeoSPARQL gebruikt. Dit zou echter evengoed mogelijk zijn met de ``sfContains'' functie. Deze query is te zien in \listingref{listing:find_everything_bounding_box}.
 
 \begin{listing}[ht]
     \begin{minted}{sparql}
@@ -111,6 +111,6 @@ De vijfde query toont aan dat het mogelijk is om manueel een vorm te voorzien om
             7 13.25, 7 9.25))'''^^geo:wktLiteral))
         }
     \end{minted}
-    \caption{Query om alles te vinden dat binnen de \textit{bounding box} van Brabant ligt.}
+    \caption{Query geospatiale objecten binnen de \textit{bounding box} van Brabant zoekt.}
     \label{listing:find_everything_bounding_box}
 \end{listing}

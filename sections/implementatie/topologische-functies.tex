@@ -5,7 +5,7 @@ Een van de belangrijkste functionaliteiten van GeoSPARQL is het topologisch van 
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.5\linewidth]{images/geosparql_example.png}
-    \caption{Illustratie van geospatiale data van \cite{ogcdocs}}
+    \caption{Illustratie geospatiale data van \cite{ogcdocs}}
     \label{fig:illustration_spatial_data}
 \end{figure}
 
@@ -18,16 +18,16 @@ Na het maken van de implementatie, bleken er toch enkele problemen te zijn met d
     \item Polygoon ``contains'' polygoon: wanneer de polygonen een hoekpunt delen (dus deze ligt erin, maar ligt helemaal in de hoek), zou dit ``true'' moeten geven, maar dit geeft ``false''.
 \end{itemize}
 
-Om een oplossing te zoeken voor deze randgevallen, moet er teveel code veranderd worden. Aangezien deze randgevallen zeer vaak voorkomen (en aangezien de kans reëel is dat er nog meerdere andere fouten zijn), werd besloten om een andere oplossing te zoeken die meer bruikbaar is voor het geheel, zoals de andere topologische functies.
+Om, gebruik makend van Terraformer, deze problemen op te lossen zou teveel code aangepast moeten worden. Aangezien deze randgevallen zeer vaak voorkomen (en aangezien de kans reëel is dat er nog meerdere andere fouten zijn), werd besloten om een andere oplossing te zoeken die meer bruikbaar is voor het geheel, zoals de andere topologische functies.
 
 \subsection{Manueel}
-Het eerst volgende idee was om dit manueel op te lossen. Dit leek een logische oplossing, omdat zo alle functies met zekerheid gemaakt kunnen worden en dit met een implementatie die conform is met de OGC standaarden. Hier werd echter vrij snel van afgeweken vanwege de complexiteit. Het uitgevoerde onderzoek wordt hieronder beschreven, opnieuw voor het voorbeeld voor de ``contains'' functie. Hierbij werd ook enkel aandacht gegeven aan de enkelvoudige vormen (dus ``Point'', ``LineString'' en ``Polygon''). De gedachtengang hierbij was dat de meervoudige vorm identiek was, maar zich meerdere keren herhaalt.
+Het eerstvolgende idee was om dit manueel op te lossen. Dit leek een logische oplossing, omdat zo alle functies met zekerheid gemaakt kunnen worden en dit met een implementatie die conform is met de OGC-standaarden. Hier werd echter vrij snel van afgeweken vanwege de complexiteit. Het uitgevoerde onderzoek wordt hieronder beschreven, opnieuw voor het voorbeeld van de ``contains'' functie. Hierbij werd ook enkel aandacht gegeven aan de enkelvoudige vormen (dus ``Point'', ``LineString'' en ``Polygon''). De gedachtengang hierbij was dat de meervoudige vorm identiek was, maar zich meerdere keren herhaalt.
 
 \subsubsection{Point}
-Bij het beginnen van een eigen implementatie is het het eenvoudigste om te beginnen bij een punt. Hierbij is het namelijk zo dat een punt enkel in een punt ligt wanneer dit punt exact hetzelfde is. Het controleren of een lijn of een polygoon in een punt ligt is nog eenvoudiger, dit is namelijk niet mogelijk (en bijgevolg dus altijd ``false'').  
+Bij het beginnen van een eigen implementatie is het eenvoudigste om te beginnen bij een punt. Hierbij is het namelijk zo dat een punt enkel in een punt ligt wanneer dit punt exact hetzelfde is. Het controleren of een lijn of een polygoon in een punt ligt is nog eenvoudiger, dit is namelijk niet mogelijk (en bijgevolg dus altijd ``false'').  
 
 \subsubsection{LineString}
-Het volgende deel is logischerwijs controleren wat binnen een lijn kan liggen. Voor een punt is dit eenvoudig (wiskundig) op te lossen, door voor elk deel van de lijn de richtingscoëfficient uit te rekenen en vervolgens te kijken of het punt op de lijn ligt. Hierbij moet wel opgelet worden, aangezien het deel van de lijn niet oneindig doorloopt. Dit is evenwel eenvoudig op te lossen door te controleren dat de x-coördinaat van het punt tussen de x-coördinaten van de uiteinden van de lijn ligt.
+Het volgende deel is logischerwijs controleren wat binnen een lijn kan liggen. Voor een punt is dit wiskundig eenvoudig op te lossen, door voor elk deel van de lijn de richtingscoëfficient uit te rekenen en vervolgens te kijken of het punt op de lijn ligt. Hierbij moet wel opgelet worden, aangezien het deel van de lijn niet oneindig doorloopt. Dit is evenwel eenvoudig op te lossen door te controleren dat de x-coördinaat van het punt tussen de x-coördinaten van de uiteinden van de lijn ligt.
 
 Bij het controleren of een lijn in een andere lijn ligt, kan dezelfde techniek als bij een punt gebruikt worden. Hierbij moet voor elk deel van de mogelijks binnen liggende lijn gecontroleerd worden of de uiteinden op de eerste lijn liggen. Ook moet er gecontroleerd worden of de richtingscoëfficient van beide lijnen in dit deel (het volledige deel) identiek is. Indien deze voorwaarden voldaan zijn, dan ligt de lijn binnen de andere lijn. 
 
@@ -39,7 +39,7 @@ Het laatste en moeilijkste deel is controleren of een vorm binnen een polygoon l
 \begin{figure}
     \centering
     \includegraphics[width=0.5\linewidth]{images/polygon_contains_point.png}
-    \caption{Polygon contains point voorbeeld.}
+    \caption{Voorbeeld polygon contains point.}
     \label{fig:polygon_contains_point}
 \end{figure}
 
@@ -48,16 +48,16 @@ Het volgende deel is het controleren of een lijn binnen een polygoon ligt. Hierv
 \begin{figure}
     \centering
     \includegraphics[width=0.3\linewidth]{images/polygon_contains_line.png}
-    \caption{Polygon contains line voorbeeld.}
+    \caption{Voorbeeld van polygon contains line.}
     \label{fig:polygon_contains_line}
 \end{figure}
 
-Het laatste deel hierbij is het controleren of een polygoon binnen een polygoon ligt. Hiervoor zou intuïtief gedacht kunnen worden aan het controleren of alle punten van de (vermoedelijk) binnenste polygoon binnen de andere polygoon liggen. Zoals geïllustreerd in \figureref{fig:polygon_contains_polygon} is dit niet altijd het geval. Dit is enkel mogelijk indien de buitenste vorm convex (= bolvormig) is. Aangezien dit in vele gevallen niet zo is, zou het verlies van performantie zijn om hierop te controleren. Een correcte techniek is echter controleren of één enkel punt van de (vermoedelijk) binnenste polygoon binnen de andere polygoon ligt. Vervolgens volstaat het om te controleren of er een lijn van de rand van de ene polygoon snijdt met een lijn van de rand van de andere polygoon. Indien er snijdende lijnen zijn, zal de ``contains'' functie ``false'' teruggeven. Hierbij wordt ook duidelijk dat deze berekeningen computationeel intensief worden, zeker in het geval van queryen. Dit kan nog verbeterd worden door de lijn intersectie tests te versnellen met het ``\textit{sweep line}'' algoritme, maar hier wordt niet verder op ingegaan. In het voorbeeld in \figureref{fig:polygon_contains_polygon} is de gekleurde polygoon degenen die getest wordt om binnen de andere te liggen.
+Het laatste deel hierbij is het controleren of een polygoon binnen een polygoon ligt. Hiervoor zou intuïtief gedacht kunnen worden aan het controleren of alle punten van de (vermoedelijk) binnenste polygoon binnen de andere polygoon liggen. Zoals geïllustreerd in \figureref{fig:polygon_contains_polygon} is dit niet altijd het geval. Dit is enkel mogelijk indien de buitenste vorm convex (= bolvormig) is. Aangezien dit in vele gevallen niet zo is, zou het verlies van performantie zijn om hierop te controleren. Een correcte techniek is echter controleren of één enkel punt van de (vermoedelijk) binnenste polygoon binnen de andere polygoon ligt. Vervolgens volstaat het om te controleren of er een lijn van de rand van de ene polygoon snijdt met een lijn van de rand van de andere polygoon. Indien er snijdende lijnen zijn, zal de ``contains'' functie ``false'' teruggeven. Hierbij wordt ook duidelijk dat deze berekeningen computationeel intensief worden, zeker in het geval van queryen. Dit kan nog verbeterd worden door de lijnintersectietests te versnellen met het ``\textit{sweep line}'' algoritme, maar hier wordt niet verder op ingegaan. In het voorbeeld in \figureref{fig:polygon_contains_polygon} is de gekleurde polygoon diegene die getest wordt om binnen de andere te liggen.
 
 \begin{figure}
     \centering
     \includegraphics[width=0.3\linewidth]{images/polygon_contains_polygon.png}
-    \caption{Polygon contains polygon voorbeeld.}
+    \caption{Voorbeeld van polygon contains polygon.}
     \label{fig:polygon_contains_polygon}
 \end{figure}
 
@@ -65,12 +65,12 @@ Het laatste deel hierbij is het controleren of een polygoon binnen een polygoon 
 \subsubsection{Extra moeilijkheden}
 De eerder vernoemde technieken zijn al vrij ingewikkeld en dit is slechts voor de ``contains'' functie. Hier zouden nog meerdere andere technieken gebruikt moeten worden om de andere functies te implementeren. Dit wordt nog ingewikkelder wanneer ook rekening gehouden wordt met de veelvoudige vormen zoals ``MultiPoint'', ``MultiLineString'' en ``MultiPolygon''. Hierbovenop is er ook nog geen rekening gehouden met de binnenste ring van de polygonen, die een deel van het vlak excluderen. Dit is nog een extra moeilijkheidsfactor waar rekening mee moet worden gehouden.  
 
-Zo zijn er vele nadelen aan het zelf implementeren hiervan. Een eigen implementatie kan al vele fouten bevatten, bij functionaliteiten zoals dit. Ook moet dit uitvoerig getest worden, wat best door een maximaal aantal gebruikers gebeurt. Bovendien moeten de meest performante algoritmes gebruikt worden, zodat dit bruikbaar is voor queries. Al deze redenen verwerpen het zelf implementeren. Hierna is er overgegaan naar ``Turf.js''.
+Zo zijn er vele nadelen aan het zelf implementeren hiervan. Een eigen implementatie bevat snel fouten bij de vereiste functionaliteiten zoals ze hierboven beschreven werden. Ook moet dit uitvoerig getest worden, wat best door een maximaal aantal gebruikers gebeurt. Bovendien moeten de meest performante algoritmes gebruikt worden, zodat dit bruikbaar is voor queries. Al deze redenen verwerpen het zelf implementeren. Daarom werd ervoor gekozen om overgegaan ``Turf.js'' te gebruiken.
 
 \subsection{Turf.js}
-``Turf.js'' is een modulaire geospatiale engine die gemaakt is in JavaScript. Zo is Turf een JavaScript \textit{library} die werkt aan de hand van GeoJSON. Het is een verzameling van kleine modules, zodat gebruik kan gemaakt worden van exact wat nodig is voor de \textit{use case}. Turf gebruikt naar eigen zeggen de nieuwste algoritmes, wat een pluspunt is voor de performantie. Bovendien heeft Turf een uitgebreide grote comunity die ervoor zorgt dat mogelijke fouten in de implementatie gevonden en opgelost worden. Zo kan een bug opgelost worden door de nieuwste versie binnen te halen.
+``Turf.js'' is een modulaire geospatiale engine die gemaakt is in JavaScript. Zo is Turf een JavaScript \textit{library} die werkt aan de hand van GeoJSON. Het is een verzameling van kleine modules, zodat gebruik kan gemaakt worden van exact wat nodig is voor de \textit{use case}. Turf gebruikt naar eigen zeggen de nieuwste algoritmes, wat een pluspunt is voor de performantie. Bovendien heeft Turf een uitgebreide \textit{community}, wat ervoor zorgt dat mogelijke fouten in de implementatie gevonden en opgelost worden. Zo kan een bug opgelost worden door de nieuwste versie binnen te halen.
 
-Turf voorziet vele methoden die gebruikt kunnen worden om zelf verder berekeningen op te doen. Daarnaast heeft Turf al enkele \textit{build in} functies, zoals ``booleanContains'', ``booleanDisjoint'' en ``booleanOverlap''. Deze functies zijn exact wat nodig is. Een overzicht van de functies die gebruikt zijn voor de implementatie van de ``Simple Features'' familie is te zien in \tableref{tab:turf_functions}.
+Turf voorziet vele methoden om te gebruiken in eigen berekeningen. Daarnaast heeft Turf al enkele \textit{build in} functies, zoals ``booleanContains'', ``booleanDisjoint'' en ``booleanOverlap''. Deze functies zijn exact wat nodig is. Een overzicht van de functies die gebruikt zijn voor de implementatie van de ``Simple Features'' familie is te zien in \tableref{tab:turf_functions}.
 
 \begin{table}[ht]
     \centering

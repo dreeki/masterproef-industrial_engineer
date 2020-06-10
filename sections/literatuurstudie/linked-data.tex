@@ -1,19 +1,19 @@
 \section{Linked Data}
 \label{sec:linked_data}
 
-Het semantisch web gaat echter niet enkel over het plaatsen van data op het web. Het belangrijkste aspect van het semantisch web is het maken van links, zodat zowel personen als machines het web van data kunnen doorkruisen. Het belangrijke van gelinkte data kan als volgt omschreven worden: wanneer je data hebt, kan je er andere gerelateerde data mee vinden. Bij gelinkte data worden deze links beschreven aan de hand van RDF. Hierbij worden URI's gebruikt voor het identificeren van objecten. Om data te interconnecteren zijn er vier regels, met als doel dat de informatie in de toekomst op onvoorspelbare manieren herbruikt zou kunnen worden. Daarnaast is het belangrijk dat de data open en toegankelijk zijn om herbruikt te worden \cite{berners2006linkeddata}. 
+Het semantisch web gaat echter niet enkel over het plaatsen van data op het web. Het belangrijkste aspect van het semantisch web is het maken van links, zodat zowel personen als machines het web van data kunnen doorkruisen. Het belangrijke aan gelinkte data kan als volgt omschreven worden: wanneer je data hebt, kan je er elders andere gerelateerde data mee vinden. Op deze manier wordt context aan de data meegegeven. Bij gelinkte data worden deze links beschreven aan de hand van RDF. Hierbij worden URI's gebruikt voor het identificeren van objecten. Om data te interconnecteren zijn er vier regels, met als doel dat de informatie in de toekomst op onvoorspelbare manieren herbruikt zou kunnen worden. Daarnaast is het belangrijk dat de data open en toegankelijk zijn om herbruikt te worden \cite{berners2006linkeddata}. 
 
 \subsection{Regels}
 Bij gelinkte data zijn er vier regels waaraan voldaan moet worden:
 \begin{enumerate}
-    \item Dingen moeten geïdentifeceerd worden met URI's. Dit is nodig om te kunnen spreken over een semantisch web \cite{berners2006linkeddata}. 
+    \item Objecten moeten geïdentifeceerd worden met URI's. Dit is nodig om te kunnen spreken over een semantisch web \cite{berners2006linkeddata}. 
     \item Er moet gebruik gemaakt worden van \acrfull{http} URI's. Dit is nodig zodat andere gebruikers de namen zouden kunnen opzoeken \cite{berners2006linkeddata}. 
-    \item Bijhorende informatie moet gevonden kunnen worden wanneer een URI gevolgd wordt. Dit is in het basis formaat van RDF en XML. Deze kan ook doorzocht worden aan de hand van SPARQL (verder besproken in \sectionref{sec:sparql}), dit is een query service voor gelinkte data in RDF formaat \cite{berners2006linkeddata}. 
-    \item Er moeten links voorzien zijn naar andere locaties die gelijkaardige data bevat, zodat dit opgezocht kan worden. Deze laatste regel is belangrijk om de informatie op het web te connecteren \cite{berners2006linkeddata}.
+    \item Bijhorende informatie moet gevonden kunnen worden wanneer een URI gevolgd wordt. Dit is in het basisformaat van RDF en XML. Deze kan ook doorzocht worden aan de hand van SPARQL (verder besproken in \sectionref{sec:sparql}), dit is een query service voor gelinkte data in RDF formaat \cite{berners2006linkeddata}. 
+    \item Er moeten links voorzien worden naar andere locaties die gelijkaardige data bevatten, zodat deze opgezocht kunnen worden. Deze laatste regel is belangrijk om de informatie op het web te connecteren \cite{berners2006linkeddata}.
 \end{enumerate}
 
 \subsection{Vijfsterrenmodel}
-Het vijfsterrenmodel is een manier om informatie in te delen in hoeverre ze open is. Meer sterren betekent dat de informatie meer open is. Tim Berners-Lee stelde dit model voor als schema voor gelinkte open data. Gelinkte open data is een essentiëel onderdeel van het semantisch web.
+Het vijfsterrenmodel is een manier om informatie in te delen op basis van openheid. Meer sterren betekent dat de informatie meer open is. Tim Berners-Lee stelde dit model voor als schema voor gelinkte open data. Gelinkte open data is een essentiëel onderdeel van het semantisch web.
 
 Eén ster stelt hetvolgende: ``\textit{Available on the web but with an open licence, to be Open Data}''. Dit betekent dat gebruikers informatie kunnen ophalen, gebruiken en delen met iedereen. Het gaat hier echter louter over het delen van informatie, het maakt dus niet uit in welk formaat dit komt \cite{berners2006linkeddata}. 
 
@@ -21,16 +21,16 @@ Twee sterren stelt dan weer: ``\textit{Available as machine-readable structured 
 
 Drie sterren betekent: ``\textit{The same as 2 stars, plus non-proprietary format}''. Het verschil om van twee sterren naar drie sterren te stijgen is het vermijden van de nood aan specifieke software om de informatie te bemachtigen. Dit kan bijvoorbeeld door de informatie op te slaan in \acrfull{csv} formaat \cite{berners2006linkeddata}.
 
-Vier sterren is vervolgens: ``\textit{All the above plus, use open standards from \acrshort{w3c} to identify things, so that people can point at your stuff}''. Voor het verdienen van de vierde ster moet de informatie voldoen aan de open standaarden van \acrshort{w3c}. Zo moet het dingen identificeren aan de hand van RDF of SPARQL. Hierbij is het belangrijk dat gebruikers (aan de hand van URI) kunnen verwijzen naar de data \cite{berners2006linkeddata}.
+Vier sterren is vervolgens: ``\textit{All the above plus, use open standards from \acrshort{w3c} to identify things, so that people can point at your stuff}''. Om een vierde ster te verdienen moet de informatie voldoen aan de open standaarden van \acrshort{w3c}. Zo moet het objecten identificeren aan de hand van RDF of SPARQL. Hierbij is het belangrijk dat gebruikers (aan de hand van URI) kunnen verwijzen naar de data \cite{berners2006linkeddata}.
 
-Tenslotte betekent vijf sterren hetvolgende: ``\textit{All the above, plus: Link your data to other people’s data to provide context}''. Om de laatste ster ook te kunnen behalen, dient men de informatie te linken aan bijhorende informatie in een andere context. Op deze manier worden de links verder verspreid. Hier wordt er dus letterlijk verwezen naar andere locaties, met als doel om meer context terug te vinden \cite{berners2006linkeddata}.
+Tenslotte betekent vijf sterren het volgende: ``\textit{All the above, plus: Link your data to other people’s data to provide context}''. Om de laatste ster ook te kunnen behalen, dient men de informatie te linken aan bijhorende informatie in een andere context. Op deze manier worden de links verder verspreid. Hier wordt er dus letterlijk verwezen naar andere locaties, met als doel om meer context terug te vinden \cite{berners2006linkeddata}.
 
 \subsection{Linked data gevisualiseerd}
 
 \begin{figure}[ht!]
     \centering
     \includegraphics[width=\linewidth]{Linked-Data-Example.png}
-    \caption{Linked Data voorbeeld}
+    \caption{Voorbeeld van Linked Data.}
     \label{fig:linked_data_example}
 \end{figure}
 

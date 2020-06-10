@@ -97,7 +97,8 @@
 
 
 
-
+\AtBeginEnvironment{minted}{\dontdofcolorbox}
+\def\dontdofcolorbox{\renewcommand\fcolorbox[4][]{##4}}
 
 
 %
@@ -114,8 +115,7 @@
 \newfontfamily{\ugentfont}{UGent Panno Text}
 
 % Manually specify additional hypnations for words
-\hyphenation{heterogene}
-
+\hyphenation{heterogene, Geo-SPARQL, Spatial-Object, geo-spatiaal}
 %
 % Translated strings. If these aren't set, the English words are used.
 %
@@ -125,9 +125,9 @@
 }
 \renewcommand\appendixtocname{Bijlagen}
 \renewcommand\appendixpagename{Bijlagen}
-\renewcommand{\listoflistingscaption}{Lijst van listings}
+\renewcommand{\listoflistingscaption}{Lijst van codefragmenten}
 \newfloat{listing}{thp}{lop}
-\floatname{listing}{Code}
+\floatname{listing}{Codefragment}
 
 
 \newcommand\foreign[1]{\emph{#1}}
@@ -150,7 +150,6 @@
 \includepdf[pages={-}]{abstractNL.pdf}
 \includepdf[pages={-}]{abstractEN.pdf}
 \tableofcontents                      % Table of Contents
-
 
 \listoffigures                        % List of figures
 \listoftables                         % List of tables
